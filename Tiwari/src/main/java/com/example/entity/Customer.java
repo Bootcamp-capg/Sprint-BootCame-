@@ -1,7 +1,11 @@
 package com.example.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GeneratorType;
 
 @Entity
 public class Customer {
@@ -10,44 +14,49 @@ public class Customer {
 	private String customerName;
 	private String customerAddress;
 	private long customerContact;
-	
+
+
+	  public Customer(int customerId, String customerName, String customerAddress,long customerContact) {
+		  super(); this.customerId = customerId;
+	  this.customerName = customerName; this.customerAddress = customerAddress;
+	  this.customerContact = customerContact; 
+	  }
+	  public Customer()
+		 {} 
+	 
 	public int getCustomerId() {
 		return customerId;
 	}
-	public void setCustId(int custId) {
-		this.customerId = custId;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
-	public String getCustName() {
-		return getCustName();
+	public String getCustomerName() {
+		return customerName;
 	}
-	public void setCustName(String custName) {
-		this.customerName = custName;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
-	public String getCustAddress() {
+	public String getCustomerAddress() {
 		return customerAddress;
 	}
-	public void setCustAddress(String custAddress) {
-		this.customerAddress = custAddress;
+	public void setCustomerAddress(String customerAddress) {
+		this.customerAddress = customerAddress;
 	}
-	public long getCustContact() {
+	public long getCustomerContact() {
 		return customerContact;
 	}
-	public void setCustContact(int custContact) {
-		this.customerContact = custContact;
+	public void setCustomerContact(long customerContact) {
+		this.customerContact = customerContact;
+	}
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerAddress="
+				+ customerAddress + ", customerContact=" + customerContact + "]";
 	}
 	
-	public Customer(int custId, String custName, String custAddress, int custContact) {
-		super();
-		this.customerId = custId;
-		this.customerName = custName;
-		this.customerAddress = custAddress;
-		this.customerContact = custContact;
-	}
+	 
 	
-	public Customer() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 
 }
