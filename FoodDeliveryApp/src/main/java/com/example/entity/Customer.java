@@ -1,46 +1,47 @@
 package com.example.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 
 @Entity
 public class Customer {
-	
-	private int custId;
-	private String custName;
-	private String custAddress;
-	private int custContact;
-	public int getCustId() {
-		return custId;
+	@Id
+	private int customerId;
+	private String customerName;
+	private String customerAddress;
+	private long customerContact;
+	public int getCustomerId() {
+		return customerId;
 	}
 	public void setCustId(int custId) {
-		this.custId = custId;
+		this.customerId = custId;
 	}
 	public String getCustName() {
-		return custName;
+		return getCustName();
 	}
 	public void setCustName(String custName) {
-		this.custName = custName;
+		this.customerName = custName;
 	}
 	public String getCustAddress() {
-		return custAddress;
+		return customerAddress;
 	}
 	public void setCustAddress(String custAddress) {
-		this.custAddress = custAddress;
+		this.customerAddress = custAddress;
 	}
-	public int getCustContact() {
-		return custContact;
+	public long getCustContact() {
+		return customerContact;
 	}
 	public void setCustContact(int custContact) {
-		this.custContact = custContact;
+		this.customerContact = custContact;
 	}
 	
 	public Customer(int custId, String custName, String custAddress, int custContact) {
 		super();
-		this.custId = custId;
-		this.custName = custName;
-		this.custAddress = custAddress;
-		this.custContact = custContact;
+		this.customerId = custId;
+		this.customerName = custName;
+		this.customerAddress = custAddress;
+		this.customerContact = custContact;
 	}
 	
 	public Customer() {

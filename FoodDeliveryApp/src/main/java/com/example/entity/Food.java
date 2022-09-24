@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Food {
@@ -16,7 +17,7 @@ public class Food {
 		this.foodName = foodName;
 		this.foodPrice = foodPrice;
 	}
-
+    @Id
 	private int foodId;
 	private String foodName;
 	private int foodPrice;
