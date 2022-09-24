@@ -15,7 +15,7 @@ import com.example.exception.CustomerAlreadyPresentException;
 import com.example.service.CustomerService;
 
 @RestController
-@RequestMapping("/customer")
+
 public class CustomerController {
 	
 	@Autowired
