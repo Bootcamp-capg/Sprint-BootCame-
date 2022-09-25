@@ -1,7 +1,10 @@
 package com.example.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -10,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Restaurant {
 	@Id
-	private int restaurantId;
+	private int id;
 	private String restaurantName;
 	private String restaurantAddress;
 	private int restaurantContact;
@@ -20,11 +23,14 @@ public class Restaurant {
 	@OneToOne(mappedBy = "restaurant")
 	private Customer customer;
 	
+	@OneToMany(mappedBy="restaurant")
+	private List<Food> food;
+	
 	public int getRestaurantId() {
-		return restaurantId;
+		return id;
 	}
-	public void setRestaurantId(int restId) {
-		this.restaurantId = restId;
+	public void setRestaurantId(int restaurantId) {
+		this.id = restaurantId;
 	}
 	public String getRestaurantName() {
 		return restaurantName;

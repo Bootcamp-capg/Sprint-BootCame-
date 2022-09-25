@@ -2,22 +2,27 @@ package com.example.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.apache.catalina.Manager;
 
 @Entity
 public class Food {
 	 @Id
-		private int foodId;
+		private int id;
 		private String foodName;
 		private int foodPrice;
 	
-	
+		@ManyToOne
+		private Restaurant restaurant;
 	public Food() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Food(int foodId, String foodName, int foodPrice) {
 		super();
-		this.foodId = foodId;
+		this.id = foodId;
 		this.foodName = foodName;
 		this.foodPrice = foodPrice;
 	}
@@ -25,10 +30,10 @@ public class Food {
 	
 	
 	public int getFoodId() {
-		return foodId;
+		return id;
 	}
 	public void setFoodId(int foodId) {
-		this.foodId = foodId;
+		this.id = foodId;
 	}
 	public String getFoodName() {
 		return foodName;
@@ -45,7 +50,7 @@ public class Food {
 	
 	@Override
 	public String toString() {
-		return "Food [foodId=" + foodId + ", foodName=" + foodName + ", foodPrice=" + foodPrice + "]";
+		return "Food [foodId=" + id + ", foodName=" + foodName + ", foodPrice=" + foodPrice + "]";
 	}
 
 }
