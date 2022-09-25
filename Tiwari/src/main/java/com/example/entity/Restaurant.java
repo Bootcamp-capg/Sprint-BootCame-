@@ -6,35 +6,35 @@ import javax.persistence.Id;
 @Entity
 public class Restaurant {
 	@Id
-	private int restId;
-	private String restName;
-	private String restAddress;
-	private int restContact;
+	private int restaurantId;
+	private String restaurantName;
+	private String restaurantAddress;
+	private int restaurantContact;
 	//private Food restMenu;
 	
-	public int getRestId() {
-		return restId;
+	public int getRestaurantId() {
+		return restaurantId;
 	}
-	public void setRestId(int restId) {
-		this.restId = restId;
+	public void setRestaurantId(int restId) {
+		this.restaurantId = restId;
 	}
-	public String getRestName() {
-		return restName;
+	public String getRestaurantName() {
+		return restaurantName;
 	}
-	public void setRestName(String restName) {
-		this.restName = restName;
+	public void setRestaurantName(String restName) {
+		this.restaurantName = restName;
 	}
-	public String getRestAddress() {
-		return restAddress;
+	public String getRestaurantAddress() {
+		return restaurantAddress;
 	}
-	public void setRestAddress(String restAddress) {
-		this.restAddress = restAddress;
+	public void setRestauranttAddress(String restAddress) {
+		this.restaurantAddress = restAddress;
 	}
-	public int getRestContact() {
-		return restContact;
+	public int getRestaurantContact() {
+		return restaurantContact;
 	}
-	public void setRestContact(int restContact) {
-		this.restContact = restContact;
+	public void setRestaurantContact(int restContact) {
+		this.restaurantContact = restContact;
 	}
 
 }

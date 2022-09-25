@@ -18,6 +18,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 
 			return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
 		}
+		@ExceptionHandler(RestaurantAlreadyPresentException.class)
+		public ResponseEntity<ErrorDetails> handleRestaurantAlreadyPresentException(RestaurantAlreadyPresentException ex,WebRequest request)
+		{
+			ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), ex.getMessage());
+
+			return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+		}
 	
 
 }
