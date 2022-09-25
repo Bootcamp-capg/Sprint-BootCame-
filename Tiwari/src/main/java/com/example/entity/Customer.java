@@ -1,21 +1,25 @@
 package com.example.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.GeneratorType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
 	@Id
+	
 	private int customerId;
 	private String customerName;
 	private String customerAddress;
 	private long customerContact;
 
 
+	@OneToOne()
+	@JoinColumn(name = "restaurant_id")
+	private  Restaurant  restaurant;
+	
+	
 	  public Customer(int customerId, String customerName, String customerAddress,long customerContact) {
 		  super(); this.customerId = customerId;
 	  this.customerName = customerName; this.customerAddress = customerAddress;

@@ -2,6 +2,10 @@ package com.example.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Restaurant {
@@ -11,6 +15,10 @@ public class Restaurant {
 	private String restaurantAddress;
 	private int restaurantContact;
 	//private Food restMenu;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "restaurant")
+	private Customer customer;
 	
 	public int getRestaurantId() {
 		return restaurantId;
