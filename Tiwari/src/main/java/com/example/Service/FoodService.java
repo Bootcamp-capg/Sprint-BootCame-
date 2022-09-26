@@ -3,6 +3,7 @@ package com.example.Service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.dto.FoodInputDto;
 import com.example.entity.Food;
 
 public interface FoodService {
@@ -13,6 +14,7 @@ public interface FoodService {
 	public Optional<Food> findFoodById(int foodId);
 //	public Optional<Food> findFoodByRestaruantId(int restaurantID);
 	//public Optional<Customer> findByName(int customerName);
+	public Food addFoodDto(FoodInputDto foodDto);
 	
 	
 

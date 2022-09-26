@@ -3,6 +3,8 @@ package com.example.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -13,12 +15,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Restaurant {
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int restaurantId;
 	private String restaurantName;
 	private String restaurantAddress;
 	private int restaurantContact;
 	//private Food restMenu;
 	
+	public Customer getCustomer() {
+		return customer;
+	}
+	public List<Food> getFood() {
+		return food;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public void setFood(List<Food> food) {
+		this.food = food;
+	}
 	@JsonIgnore
 	@OneToOne(mappedBy = "restaurant")
 	private Customer customer;
@@ -27,10 +42,10 @@ public class Restaurant {
 	private List<Food> food;
 	
 	public int getRestaurantId() {
-		return id;
+		return restaurantId;
 	}
 	public void setRestaurantId(int restaurantId) {
-		this.id = restaurantId;
+		this.restaurantId = restaurantId;
 	}
 	public String getRestaurantName() {
 		return restaurantName;

@@ -17,7 +17,10 @@ import com.example.Exception.EnterValidDetailsException;
 import com.example.Exception.FoodAlreadyPresentException;
 import com.example.Exception.FoodNotFoundException;
 import com.example.Service.FoodService;
+import com.example.Service.RestaurantService;
+import com.example.dto.FoodInputDto;
 import com.example.entity.Food;
+import com.example.entity.Restaurant;
 
 @RestController
 @RequestMapping("/food")
@@ -25,6 +28,9 @@ public class FoodController {
 
 	@Autowired
 	FoodService foodService;
+	
+	@Autowired
+	RestaurantService restaurantService;
 	
 	@GetMapping("/")
 	public List<Food> getAllFoods(){		
@@ -55,10 +61,27 @@ public class FoodController {
 		return food;
 		
 	}
+	@PostMapping("/add/dto")
+	ResponseEntity<Food> addDepartment(@RequestBody FoodInputDto food) {
+		Food foodDto = foodService.addFoodDto(food);
+		return new ResponseEntity<>(foodDto, HttpStatus.OK);
+	}
 	
 	@PutMapping("/edit-Food")
 	public Food editFood(@RequestBody Food food) {
 		foodService.editFood(food);
 		return food;
+}
+	@PutMapping("/{FoodId}/addresturant/{restaurantId}")
+    private ResponseEntity<Food> addRestaurant(@PathVariable int foodId, @PathVariable int restaurantId) {
+        if(restaurantId<0 || foodId<0) {	
+    		throw new EnterValidDetailsException("Either empId Or managerId Is Invalid Please Enter Correct ");
+    	}
+        else {
+        	Food food = foodService.findFoodById(foodId).get();
+        Restaurant restaurant = restaurantService.findRestaurantByID(restaurantId).get();
+        food.setRestaurant(restaurant);
+        return new ResponseEntity<Food>(foodService.addFood(food), HttpStatus.ACCEPTED);
+    }
 }
 }

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.example.dto.FoodInputDto;
 import com.example.entity.Customer;
 import com.example.repository.CustomerRepository;
 
@@ -15,5 +16,6 @@ public interface CustomerService {
 	public List<Customer> getCustomers();
 	public Optional<Customer> findCustomerByID(int customerId);
 	//public Optional<Customer> findByName(int customerName);
+	
 
 }
