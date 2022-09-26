@@ -30,13 +30,19 @@ public class CustomerServiceImp implements CustomerService{
 
 	@Override
 	public List<Customer> getCustomers() {
-		return customerRepository.findAll();
+		return (List<Customer>) customerRepository.findAll();
 		
 	}
 
 	@Override
 	public Optional<Customer> findCustomerByID(int customerId) {
 		return customerRepository.findById(customerId);
+		
+	}
+
+	@Override
+	public Customer findCustomerByName(String name) {
+	return	customerRepository.findCustomerByName(name);
 		
 	}
 	

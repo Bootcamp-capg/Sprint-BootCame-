@@ -16,6 +16,7 @@ public interface CustomerService {
 	public List<Customer> getCustomers();
 	public Optional<Customer> findCustomerByID(int customerId);
 	//public Optional<Customer> findByName(int customerName);
+	public Customer findCustomerByName(String name);
 	
 
 }

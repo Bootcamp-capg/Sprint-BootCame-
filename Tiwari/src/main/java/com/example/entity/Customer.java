@@ -10,7 +10,7 @@ public class Customer {
 	@Id
 	
 	private int customerId;
-	private String customerName;
+	private String name;
 	private String customerAddress;
 	private long customerContact;
 
@@ -20,9 +20,9 @@ public class Customer {
 	private  Restaurant  restaurant;
 	
 	
-	  public Customer(int customerId, String customerName, String customerAddress,long customerContact) {
+	  public Customer(int customerId, String name, String customerAddress,long customerContact) {
 		  super(); this.customerId = customerId;
-	  this.customerName = customerName; this.customerAddress = customerAddress;
+	  this.name = name; this.customerAddress = customerAddress;
 	  this.customerContact = customerContact; 
 	  }
 	  public Customer()
@@ -34,11 +34,11 @@ public class Customer {
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
-	public String getCustomerName() {
-		return customerName;
+	public String getname() {
+		return name;
 	}
 	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+		this.name = customerName;
 	}
 	public String getCustomerAddress() {
 		return customerAddress;
@@ -54,7 +54,7 @@ public class Customer {
 	}
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerAddress="
+		return "Customer [customerId=" + customerId + ", name=" + name + ", customerAddress="
 				+ customerAddress + ", customerContact=" + customerContact + "]";
 	}
 	
