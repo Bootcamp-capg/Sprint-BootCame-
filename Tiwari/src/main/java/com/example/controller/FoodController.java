@@ -72,7 +72,7 @@ public class FoodController {
 		foodService.editFood(food);
 		return food;
 }
-	@PutMapping("/{FoodId}/addresturant/{restaurantId}")
+	@PutMapping("/{foodId}/addresturant/{restaurantId}")
     private ResponseEntity<Food> addRestaurant(@PathVariable int foodId, @PathVariable int restaurantId) {
         if(restaurantId<0 || foodId<0) {	
     		throw new EnterValidDetailsException("Either empId Or managerId Is Invalid Please Enter Correct ");

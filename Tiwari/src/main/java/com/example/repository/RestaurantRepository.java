@@ -8,5 +8,6 @@ import com.example.entity.Restaurant;
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>{
 	
+	
 
 }

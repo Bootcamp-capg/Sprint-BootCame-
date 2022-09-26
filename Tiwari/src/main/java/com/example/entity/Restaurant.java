@@ -10,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 
 
 @Entity
@@ -25,6 +27,7 @@ public class Restaurant {
 	public Customer getCustomer() {
 		return customer;
 	}
+	@JsonIgnore
 	public List<Food> getFood() {
 		return food;
 	}
