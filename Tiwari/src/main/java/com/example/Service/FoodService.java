@@ -9,7 +9,7 @@ import com.example.entity.Food;
 public interface FoodService {
 	
 	public Food addFood(Food food);
-	public Food editFood(Food food);
+	//public Food editFood(Food food);
 	public List<Food> getAllFoods();
 	public Optional<Food> findFoodById(int foodId);
 //	public Optional<Food> findFoodByRestaruantId(int restaurantID);

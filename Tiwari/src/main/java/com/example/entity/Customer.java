@@ -1,8 +1,11 @@
 package com.example.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -18,6 +21,15 @@ public class Customer {
 	@OneToOne()
 	@JoinColumn(name = "restaurant_id")
 	private  Restaurant  restaurant;
+	
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+	@OneToMany(mappedBy="customer")
+	private List<Food> food;
 	
 	
 	  public Customer(int customerId, String name, String customerAddress,long customerContact) {

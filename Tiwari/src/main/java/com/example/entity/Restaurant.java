@@ -44,6 +44,8 @@ public class Restaurant {
 	@OneToMany(mappedBy="restaurant")
 	private List<Food> food;
 	
+	
+	
 	public int getId() {
 		return id;
 	}

@@ -22,11 +22,7 @@ public class FoodServiceImp implements FoodService {
 		return food;
 	}
 
-	@Override
-	public Food editFood(Food food) {
-		foodRepository.save(food);
-		return food;
-	}
+	
 
 	@Override
 	public List<Food> getAllFoods() {

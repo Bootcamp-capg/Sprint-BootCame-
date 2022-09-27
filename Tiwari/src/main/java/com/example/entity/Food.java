@@ -18,6 +18,9 @@ public class Food {
 	// @JsonIgnore
 	@ManyToOne
 	private Restaurant restaurant;
+	
+	@ManyToOne
+	private Customer customer;
 
 	public Food() {
 		super();
@@ -67,5 +70,15 @@ public class Food {
 	public String toString() {
 		return "Food [foodId=" + foodId + ", foodName=" + foodName + ", foodPrice=" + foodPrice + "]";
 	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	
 
 }
