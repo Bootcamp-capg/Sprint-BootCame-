@@ -22,6 +22,9 @@ public class Customer {
 	@JoinColumn(name = "restaurant_id")
 	private  Restaurant  restaurant;
 	
+	@OneToOne(mappedBy = "customer")
+	private Cart cart;
+	
 	public Restaurant getRestaurant() {
 		return restaurant;
 	}

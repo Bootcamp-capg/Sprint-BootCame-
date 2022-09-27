@@ -18,10 +18,12 @@ import com.example.Exception.EnterValidDetailsException;
 import com.example.Exception.FoodAlreadyPresentException;
 import com.example.Exception.FoodNotFoundException;
 import com.example.Exception.ListEmptyException;
+import com.example.Service.CartService;
 import com.example.Service.CustomerService;
 import com.example.Service.FoodService;
 import com.example.Service.RestaurantService;
 import com.example.dto.FoodInputDto;
+import com.example.entity.Cart;
 import com.example.entity.Customer;
 import com.example.entity.Food;
 import com.example.entity.Restaurant;
@@ -39,6 +41,11 @@ public class FoodController {
 	
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	CartService cartService;
+	
+	
 
 	@GetMapping("/")
 	public ResponseEntity<List<Food>> getAllFoods() {
@@ -135,6 +142,18 @@ public class FoodController {
 		}
 
 	}
+	
+	/*
+	 * @PutMapping("/{foodId}/addcart/{cartId}") private ResponseEntity<Food>
+	 * addCart(@PathVariable int foodId, @PathVariable int cartId) { if (cartId < 0
+	 * || foodId < 0) { throw new
+	 * EnterValidDetailsException("Either empId Or managerId Is Invalid Please Enter Correct "
+	 * ); } else { Food food = foodService.findFoodById(foodId).get(); Cart cart =
+	 * cartService.findCartById(cartId).get(); food.setCart(cart); return new
+	 * ResponseEntity<Food>(foodService.addFood(food), HttpStatus.ACCEPTED); }
+	 * 
+	 * }
+	 */
 	
 	
 

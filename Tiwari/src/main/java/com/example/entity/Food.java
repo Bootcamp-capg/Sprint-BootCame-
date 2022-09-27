@@ -19,6 +19,15 @@ public class Food {
 	@ManyToOne
 	private Restaurant restaurant;
 	
+	/*
+	 * @ManyToOne private Cart cart;
+	 */
+	/*
+	 * public Cart getCart() { return cart; }
+	 * 
+	 * public void setCart(Cart cart) { this.cart = cart; }
+	 */
+
 	@ManyToOne
 	private Customer customer;
 
