@@ -11,15 +11,37 @@ public class Orders {
 	private int orderId;
 	private String OrderDate;
 	private String OrderTime;
+	private Restaurant restaurant;
+	private Customer customer;
+	private Food food;
 	
 	@OneToOne()
 	@JoinColumn(name = "cart_id")
-	private  Customer  cart;
+	private  Cart  cart;
 	
-	public Customer getCart() {
+	
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public Food getFood() {
+		return food;
+	}
+	public void setFood(Food food) {
+		this.food = food;
+	}
+	public Cart getCart() {
 		return cart;
 	}
-	public void setCart(Customer cart) {
+	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
 	public Orders(int orderId, String orderDate, String orderTime) {

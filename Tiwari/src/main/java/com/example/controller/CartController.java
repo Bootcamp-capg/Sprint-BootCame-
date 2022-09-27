@@ -1,12 +1,13 @@
 package com.example.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import com.example.Service.CustomerService;
 import com.example.entity.Cart;
 import com.example.entity.Customer;
 import com.example.entity.Food;
+
 
 @RestController
 @RequestMapping("/cart")
@@ -42,6 +44,12 @@ public class CartController {
 
 	}
 	
+	@PostMapping("/addcart")
+	private ResponseEntity<Cart> addCart(Cart cart) {
+		
+			return new ResponseEntity<Cart>(cartService.addCart(cart), HttpStatus.ACCEPTED);
+	}
+	
 	@GetMapping("/{cartId}")
 	public ResponseEntity<Cart> getByFoodId(@PathVariable int cartId) {
 		if (cartId < 0) {
@@ -52,6 +60,23 @@ public class CartController {
 				throw new FoodNotFoundException("Food not found with foodId " + cartId);
 			}
 			return new ResponseEntity<Cart>(cartService.findCartById(cartId).get(), HttpStatus.FOUND);
+		}
+	}
+	
+	@PutMapping("/{cartId}")
+	public ResponseEntity<Cart> addCartPrice(@PathVariable int cartId) {
+		if(cartId < 0)
+			throw new EnterValidDetailsException("Please Enter Valid cart Id");
+		else {
+			Cart cart= cartService.findCartById(cartId).get();
+			List<Food> food = cart.getCustomer().getRestaurant().getFood();
+			int finalPrice =0;
+			for(Food x : food) {
+				
+				finalPrice += x.getFoodPrice();
+			}
+			cart.setFinalPrice(finalPrice);
+			return new ResponseEntity<Cart>(cartService.addCart(cart), HttpStatus.OK);
 		}
 	}
 

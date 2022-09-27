@@ -14,6 +14,16 @@ public class Cart {
 	@Id
 	private int id;
 	
+	private int finalPrice;
+	
+	public int getFinalPrice() {
+		return finalPrice;
+	}
+
+	public void setFinalPrice(int finalPrice) {
+		this.finalPrice = finalPrice;
+	}
+
 	@OneToOne()
 	@JoinColumn(name = "customer_id")
 	private  Customer  customer;
