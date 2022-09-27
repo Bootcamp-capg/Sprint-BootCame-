@@ -15,4 +15,6 @@ public interface RestaurantService {
 	public Optional<Restaurant> findRestaurantByID(int restaurantId);
 	//public List<RestaurentOutputDto> getAllFoodDto(int restaurantId);
 	//public Optional<Restaurant> findRestaurantById(int restaurantId);
+	public List<Restaurant> findByRestaurantAddress(String restaurantAddress);
+	//public List<RestaurentOutputDto> findFoodByRestaurantId(int restaurantId);
 }

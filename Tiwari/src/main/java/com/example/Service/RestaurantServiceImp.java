@@ -35,12 +35,25 @@ public class RestaurantServiceImp implements RestaurantService{
 
 	@Override
 	public List<Restaurant> getRestaurants() {
-		return restaurantRepository.findAll();
+		return (List<Restaurant>) restaurantRepository.findAll();
 	}
 
 	
 	  @Override public Optional<Restaurant> findRestaurantByID(int restaurantId) {
 	  return restaurantRepository.findById(restaurantId); }
+
+	@Override
+	public List<Restaurant> findByRestaurantAddress(String restaurantAddress) {
+		
+		return restaurantRepository.findByRestaurantAddress(restaurantAddress);
+	}
+
+	/*
+	 * @Override public List<RestaurentOutputDto> findFoodByRestaurantId(int
+	 * restaurantId) {
+	 * 
+	 * return restaurantRepository. }
+	 */
 	 
 
 	/*

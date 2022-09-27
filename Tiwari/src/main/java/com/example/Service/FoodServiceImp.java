@@ -30,7 +30,7 @@ public class FoodServiceImp implements FoodService {
 
 	@Override
 	public List<Food> getAllFoods() {
-		return foodRepository.findAll();
+		return (List<Food>) foodRepository.findAll();
 	}
 
 	@Override
@@ -49,6 +49,12 @@ public class FoodServiceImp implements FoodService {
 		
 		// save dept obj in db 
 		return foodRepository.save(foodInputDto);
+	}
+
+	@Override
+	public List<Food> findAllFoodByRestaurantId(int restaurantId) {
+		
+		return foodRepository.findAllFoodByRestaurantId(restaurantId);
 	}
 
 //	@Override

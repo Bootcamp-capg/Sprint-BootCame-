@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 public class Restaurant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int restaurantId;
+	private int id;
 	private String restaurantName;
 	private String restaurantAddress;
 	private int restaurantContact;
@@ -44,11 +44,11 @@ public class Restaurant {
 	@OneToMany(mappedBy="restaurant")
 	private List<Food> food;
 	
-	public int getRestaurantId() {
-		return restaurantId;
+	public int getId() {
+		return id;
 	}
-	public void setRestaurantId(int restaurantId) {
-		this.restaurantId = restaurantId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getRestaurantName() {
 		return restaurantName;

@@ -1,26 +1,18 @@
 package com.example.dto;
 
+import java.util.List;
+
+import com.example.entity.Food;
+
 public class RestaurentOutputDto {
-	private int foodId;
-	private String foodName;
-	private int foodPrice;
-	public int getFoodId() {
-		return foodId;
+	List<Food> foodList;
+
+	public List<Food> getFoodList() {
+		return foodList;
 	}
-	public String getFoodName() {
-		return foodName;
-	}
-	public int getFoodPrice() {
-		return foodPrice;
-	}
-	public void setFoodId(int foodId) {
-		this.foodId = foodId;
-	}
-	public void setFoodName(String foodName) {
-		this.foodName = foodName;
-	}
-	public void setFoodPrice(int foodPrice) {
-		this.foodPrice = foodPrice;
+
+	public void setFoodList(List<Food> foodList) {
+		this.foodList = foodList;
 	}
 
 }
