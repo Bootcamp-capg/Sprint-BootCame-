@@ -6,7 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.dto.CustomerInputDto;
+import com.example.dto.RestaurantInputDto;
 import com.example.dto.RestaurentOutputDto;
+import com.example.entity.Customer;
+import com.example.entity.Food;
 import com.example.entity.Restaurant;
 import com.example.repository.FoodRepository;
 import com.example.repository.RestaurantRepository;
@@ -47,6 +51,25 @@ public class RestaurantServiceImp implements RestaurantService{
 		
 		return restaurantRepository.findByRestaurantAddress(restaurantAddress);
 	}
+
+	@Override
+	public Restaurant addRestaurantDto(RestaurantInputDto restaurantDto) {
+		Restaurant restaurantInputDto = new Restaurant();
+		
+		// Update dept name
+		restaurantInputDto.setRestaurantName(restaurantDto.getRestaurantName());
+		restaurantInputDto.setRestauranttAddress(restaurantDto.getRestaurantAddress());
+		restaurantInputDto.setRestaurantContact(restaurantDto.getRestaurantContact());
+		// save dept obj in db 
+		return restaurantRepository.save(restaurantInputDto);
+	}
+
+	
+	
+
+	
+	
+	
 
 	/*
 	 * @Override public List<RestaurentOutputDto> findFoodByRestaurantId(int

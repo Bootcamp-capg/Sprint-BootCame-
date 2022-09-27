@@ -19,6 +19,8 @@ import com.example.Exception.FoodNotFoundException;
 import com.example.Exception.RestaurantAlreadyPresentException;
 import com.example.Service.CustomerService;
 import com.example.Service.RestaurantService;
+import com.example.dto.CustomerInputDto;
+import com.example.dto.RestaurantInputDto;
 import com.example.entity.Customer;
 import com.example.entity.Food;
 import com.example.entity.Restaurant;
@@ -70,6 +72,12 @@ public class RestaurantController {
 	public List<Restaurant> getByRestaurantAddress(@PathVariable("restaurantaddress") String restaurantAddress) {
 		return restaurantService.findByRestaurantAddress(restaurantAddress);
 
+	}
+	
+	@PostMapping("/add/dto")
+	ResponseEntity<Restaurant> addRestaurant(@RequestBody RestaurantInputDto restaurantInputDto) {
+		Restaurant restaurantDto = restaurantService.addRestaurantDto(restaurantInputDto);
+		return new ResponseEntity<Restaurant>(restaurantDto, HttpStatus.OK);
 	}
 
 }

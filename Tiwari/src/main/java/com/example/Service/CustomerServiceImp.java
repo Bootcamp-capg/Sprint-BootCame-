@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.example.dto.CustomerInputDto;
 import com.example.entity.Customer;
+import com.example.entity.Food;
 import com.example.repository.CustomerRepository;
 @Service
 public class CustomerServiceImp implements CustomerService{
@@ -43,6 +45,22 @@ public class CustomerServiceImp implements CustomerService{
 	@Override
 	public Customer findCustomerByName(String name) {
 	return	customerRepository.findCustomerByName(name);
+		
+	}
+
+	@Override
+	public Customer addCustomerDto(CustomerInputDto customerDto) {
+		// create department object
+				Customer customerInputDto = new Customer();
+				
+				// Update dept name
+				customerInputDto.setCustomerName(customerDto.getName());
+				customerInputDto.setCustomerAddress(customerDto.getCustomerAddress());
+				customerInputDto.setCustomerContact(customerDto.getCustomerContact());
+				
+				
+				// save dept obj in db 
+				return customerRepository.save(customerInputDto);
 		
 	}
 	

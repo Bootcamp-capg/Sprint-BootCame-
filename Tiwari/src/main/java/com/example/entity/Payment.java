@@ -4,6 +4,8 @@ import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 public class Payment {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int payId;
 	private Date payDate;
 	private Time payTime;

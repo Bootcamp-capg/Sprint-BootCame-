@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,8 @@ import com.example.Exception.EnterValidDetailsException;
 import com.example.Exception.FoodNotFoundException;
 import com.example.Service.CartService;
 import com.example.Service.CustomerService;
+import com.example.dto.CartInputDto;
+import com.example.dto.CustomerInputDto;
 import com.example.entity.Cart;
 import com.example.entity.Customer;
 import com.example.entity.Food;
@@ -78,6 +81,12 @@ public class CartController {
 			cart.setFinalPrice(finalPrice);
 			return new ResponseEntity<Cart>(cartService.addCart(cart), HttpStatus.OK);
 		}
+	}
+	
+	@PostMapping("/add/dto")
+	ResponseEntity<Cart> addCart(@RequestBody CartInputDto cartInputDto) {
+		Cart cartDto = cartService.addCartDto(cartInputDto);
+		return new ResponseEntity<Cart>(cartDto, HttpStatus.OK);
 	}
 
 }

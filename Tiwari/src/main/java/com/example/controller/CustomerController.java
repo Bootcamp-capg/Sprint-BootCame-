@@ -18,6 +18,8 @@ import com.example.Exception.EnterValidDetailsException;
 import com.example.Exception.FoodNotFoundException;
 import com.example.Service.CustomerService;
 import com.example.Service.RestaurantService;
+import com.example.dto.CustomerInputDto;
+import com.example.dto.FoodInputDto;
 import com.example.entity.Customer;
 import com.example.entity.Food;
 import com.example.entity.Restaurant;
@@ -47,6 +49,12 @@ public class CustomerController {
 		customerService.addCustomer(customer);
 		return customer;
 
+	}
+	
+	@PostMapping("/add/dto")
+	ResponseEntity<Customer> addCustomer(@RequestBody CustomerInputDto customerInputDto) {
+		Customer customerDto = customerService.addCustomerDto(customerInputDto);
+		return new ResponseEntity<Customer>(customerDto, HttpStatus.OK);
 	}
 
 	@PutMapping("/edit-Customer")

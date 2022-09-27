@@ -103,7 +103,7 @@ public class FoodController {
 	 */
 	
 	@PutMapping("/update")
-    public ResponseEntity<Food> updateEmployeeById(@RequestBody Food food) {
+    public ResponseEntity<Food> updateFoodById(@RequestBody Food food) {
     	Optional<Food> newFood = foodService.findFoodById(food.getFoodId());
     	if(!newFood.isPresent()) {
     		throw new FoodNotFoundException("food does not exist with id "+food.getFoodId());

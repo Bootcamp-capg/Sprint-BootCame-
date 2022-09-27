@@ -3,7 +3,10 @@ package com.example.Service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.dto.CustomerInputDto;
+import com.example.dto.RestaurantInputDto;
 import com.example.dto.RestaurentOutputDto;
+import com.example.entity.Customer;
 import com.example.entity.Food;
 import com.example.entity.Restaurant;
 
@@ -17,4 +20,5 @@ public interface RestaurantService {
 	//public Optional<Restaurant> findRestaurantById(int restaurantId);
 	public List<Restaurant> findByRestaurantAddress(String restaurantAddress);
 	//public List<RestaurentOutputDto> findFoodByRestaurantId(int restaurantId);
+	public Restaurant addRestaurantDto(RestaurantInputDto restaurantDto);
 }
