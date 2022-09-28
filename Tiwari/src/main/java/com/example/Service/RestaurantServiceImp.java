@@ -6,7 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.Exception.FoodNotFoundException;
+import com.example.Exception.InvalidIdException;
 import com.example.Exception.ListEmptyException;
+import com.example.Exception.RestaurantAlreadyPresentException;
+import com.example.Exception.RestaurantNotFoundException;
 import com.example.dto.RestaurantInputDto;
 import com.example.entity.Restaurant;
 import com.example.repository.RestaurantRepository;
@@ -21,19 +25,28 @@ public class RestaurantServiceImp implements RestaurantService {
 
 	@Override
 	public Restaurant addRestaurant(Restaurant restaurant) {
-		restaurantRepository.save(restaurant);
-		return restaurant;
+		if(restaurant.getId()<0) {
+			 throw new InvalidIdException("Please Enter Valid Restaurant Id");
+		}
+		else {
+		if (restaurantRepository.findById(restaurant.getId()).isPresent()) {
+			throw new RestaurantAlreadyPresentException(
+					"Entered id" + restaurant.getId() + "is already present");
+		}
+		return restaurantRepository.save(restaurant);
+		}
+		
 	}
 
 	@Override
 	public Restaurant editRestaurant(Restaurant restaurant) {
 		Optional<Restaurant> newRestaurant = restaurantRepository.findById(restaurant.getId());
-		newRestaurant.get().setId(restaurant.getId());
-		newRestaurant.get().setRestaurantName(restaurant.getRestaurantName());
-		newRestaurant.get().setRestaurantContact(restaurant.getRestaurantContact());
-		// newEmployee.get().setEmail(employee.getEmail());
-		restaurantRepository.save(restaurant);
-		return restaurant;
+		if(!newRestaurant.isPresent()) {
+			throw new RestaurantNotFoundException("restaurant does not exist with id"+restaurant.getId());
+		}
+		else {
+			return restaurantRepository.save(restaurant);
+		}
 	}
 
 	@Override
@@ -46,8 +59,16 @@ public class RestaurantServiceImp implements RestaurantService {
 
 	@Override
 	public Optional<Restaurant> findRestaurantByID(int restaurantId) {
+		if (restaurantId < 0) {
+			throw new InvalidIdException("Please Enter Valid Food Id");
+
+		} else {
+			if (!restaurantRepository.findById(restaurantId).isPresent()) {
+				throw new FoodNotFoundException("Food not found with foodId " + restaurantId);
+			}
 		
 		return restaurantRepository.findById(restaurantId);
+		}
 	}
 
 	@Override

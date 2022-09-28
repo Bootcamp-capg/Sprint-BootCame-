@@ -42,44 +42,23 @@ public class RestaurantController {
 
 	@PostMapping("/addRestaurant")
 	public ResponseEntity<Restaurant> saveRestaurant(@RequestBody Restaurant restaurant) {
-		if(restaurant.getId()<0) {
-			 throw new InvalidIdException("Please Enter Valid Restaurant Id");
-		}
-		else {
-		if (restaurantService.findRestaurantByID(restaurant.getId()).isPresent()) {
-			throw new RestaurantAlreadyPresentException(
-					"Entered id" + restaurant.getId() + "is already present");
-		}
-		
 		return new ResponseEntity<Restaurant> (restaurantService.addRestaurant(restaurant),HttpStatus.CREATED);
-		}
+		
 	}
 	
 	@PutMapping("/update")
 	public ResponseEntity<Restaurant> updateRestaurant(@RequestBody Restaurant restaurant) {
-		Optional<Restaurant> newRestaurant = restaurantService.findRestaurantByID(restaurant.getId());
-		if(!newRestaurant.isPresent()) {
-			throw new RestaurantNotFoundException("restaurant does not exist with id"+restaurant.getId());
-		}
-		else {
-			
 			return new ResponseEntity<Restaurant>(restaurantService.editRestaurant(restaurant), HttpStatus.OK);
-		}
+		
 		
 	}
 
 	@PutMapping("/{restaurantId}")
 	public ResponseEntity<Restaurant> getByFoodId(@PathVariable int restaurantId) {
-		if (restaurantId < 0) {
-			throw new InvalidIdException("Please Enter Valid Food Id");
-
-		} else {
-			if (!restaurantService.findRestaurantByID(restaurantId).isPresent()) {
-				throw new FoodNotFoundException("Food not found with foodId " + restaurantId);
-			}
+		
 			return new ResponseEntity<Restaurant>(restaurantService.findRestaurantByID(restaurantId).get(),
 					HttpStatus.FOUND);
-		}
+		
 	}
 
 	@GetMapping("/getbyaddress/{restaurantaddress}")
@@ -90,8 +69,8 @@ public class RestaurantController {
 	
 	@PostMapping("/add/dto")
 	ResponseEntity<Restaurant> addRestaurant(@RequestBody RestaurantInputDto restaurantInputDto) {
-		Restaurant restaurantDto = restaurantService.addRestaurantDto(restaurantInputDto);
-		return new ResponseEntity<Restaurant>(restaurantDto, HttpStatus.OK);
+		
+		return new ResponseEntity<Restaurant>(restaurantService.addRestaurantDto(restaurantInputDto), HttpStatus.OK);
 	}
 
 }
