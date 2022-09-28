@@ -28,7 +28,6 @@ import com.example.entity.Customer;
 import com.example.entity.Food;
 import com.example.entity.Restaurant;
 
-
 @RestController
 @RequestMapping("/food")
 public class FoodController {
@@ -38,14 +37,12 @@ public class FoodController {
 
 	@Autowired
 	RestaurantService restaurantService;
-	
+
 	@Autowired
 	CustomerService customerService;
-	
+
 	@Autowired
 	CartService cartService;
-	
-	
 
 	@GetMapping("/")
 	public ResponseEntity<List<Food>> getAllFoods() {
@@ -54,14 +51,6 @@ public class FoodController {
 			throw new ListEmptyException("No Food Present");
 		return new ResponseEntity<List<Food>>(list, HttpStatus.OK);
 	}
-
-	/*
-	 * @GetMapping("") public ResponseEntity<List<Employee>> getAllEmployees() {
-	 * List<Employee> list = managementService.getAllEmployees(); if
-	 * (list.isEmpty()) throw new
-	 * EmployeesEmptyException("No Employees Data is present right now"); return new
-	 * ResponseEntity<List<Employee>>(list, HttpStatus.OK); }
-	 */
 
 	@GetMapping("/{foodId}")
 	public ResponseEntity<Food> getByFoodId(@PathVariable int foodId) {
@@ -79,15 +68,15 @@ public class FoodController {
 	@PostMapping("/add-Food")
 	public ResponseEntity<Food> saveFood(@RequestBody Food food) {
 		if (food.getFoodId() < 0) {
-			throw new EnterValidDetailsException("Please Enter Valid Food Id");}
-			else {
-				if(foodService.findFoodById(food.getFoodId()).isPresent())
-			throw new FoodAlreadyPresentException(
-					"Entered id" + food.getFoodId() + "is already Present Please Enter another id");
-			}
+			throw new EnterValidDetailsException("Please Enter Valid Food Id");
+		} else {
+			if (foodService.findFoodById(food.getFoodId()).isPresent())
+				throw new FoodAlreadyPresentException(
+						"Entered id" + food.getFoodId() + "is already Present Please Enter another id");
+		}
 
 		foodService.addFood(food);
-		return new ResponseEntity<Food> (food,HttpStatus.CREATED);
+		return new ResponseEntity<Food>(food, HttpStatus.CREATED);
 
 	}
 
@@ -97,25 +86,19 @@ public class FoodController {
 		return new ResponseEntity<>(foodDto, HttpStatus.OK);
 	}
 
-	/*
-	 * @PutMapping("/edit-Food") public ResponseEntity<Food> editFood(@RequestBody
-	 * Food food) { foodService.editFood(food); return food; }
-	 */
-	
 	@PutMapping("/update")
-    public ResponseEntity<Food> updateFoodById(@RequestBody Food food) {
-    	Optional<Food> newFood = foodService.findFoodById(food.getFoodId());
-    	if(!newFood.isPresent()) {
-    		throw new FoodNotFoundException("food does not exist with id "+food.getFoodId());
-    	}
-    	else {
-    		newFood.get().setFoodId(food.getFoodId());
-    		newFood.get().setFoodName(food.getFoodName());
-    		newFood.get().setFoodPrice(food.getFoodPrice());
-    		//newEmployee.get().setEmail(employee.getEmail());
-    		return new ResponseEntity<Food>(foodService.addFood(newFood.get()), HttpStatus.OK);
-    	}
-    }
+	public ResponseEntity<Food> updateFoodById(@RequestBody Food food) {
+		Optional<Food> newFood = foodService.findFoodById(food.getFoodId());
+		if (!newFood.isPresent()) {
+			throw new FoodNotFoundException("food does not exist with id " + food.getFoodId());
+		} else {
+			newFood.get().setFoodId(food.getFoodId());
+			newFood.get().setFoodName(food.getFoodName());
+			newFood.get().setFoodPrice(food.getFoodPrice());
+			// newEmployee.get().setEmail(employee.getEmail());
+			return new ResponseEntity<Food>(foodService.addFood(newFood.get()), HttpStatus.OK);
+		}
+	}
 
 	@PutMapping("/{foodId}/addresturant/{restaurantId}")
 	private ResponseEntity<Food> addRestaurant(@PathVariable int foodId, @PathVariable int restaurantId) {
@@ -129,7 +112,7 @@ public class FoodController {
 		}
 
 	}
-	
+
 	@PutMapping("/{foodId}/addcustomer/{customerId}")
 	private ResponseEntity<Food> addCustomer(@PathVariable int foodId, @PathVariable int customerId) {
 		if (customerId < 0 || foodId < 0) {
@@ -142,25 +125,12 @@ public class FoodController {
 		}
 
 	}
-	
-	/*
-	 * @PutMapping("/{foodId}/addcart/{cartId}") private ResponseEntity<Food>
-	 * addCart(@PathVariable int foodId, @PathVariable int cartId) { if (cartId < 0
-	 * || foodId < 0) { throw new
-	 * EnterValidDetailsException("Either empId Or managerId Is Invalid Please Enter Correct "
-	 * ); } else { Food food = foodService.findFoodById(foodId).get(); Cart cart =
-	 * cartService.findCartById(cartId).get(); food.setCart(cart); return new
-	 * ResponseEntity<Food>(foodService.addFood(food), HttpStatus.ACCEPTED); }
-	 * 
-	 * }
-	 */
-	
-	
 
 	@GetMapping("/getbyrestaurentid/{id}")
 	public ResponseEntity<List<Food>> getAllByRestaurantId(@PathVariable int id) {
 		if (id < 0) {
-			throw new EnterValidDetailsException("Please Enter Valid Food Id");}
+			throw new EnterValidDetailsException("Please Enter Valid Food Id");
+		}
 		return new ResponseEntity<List<Food>>(foodService.findAllFoodByRestaurantId(id), HttpStatus.FOUND);
 	}
 

@@ -21,7 +21,7 @@ public class Restaurant {
 	private int id;
 	private String restaurantName;
 	private String restaurantAddress;
-	private int restaurantContact;
+	private long restaurantContact;
 	//private Food restMenu;
 	
 	public Customer getCustomer() {
@@ -64,10 +64,10 @@ public class Restaurant {
 	public void setRestauranttAddress(String restAddress) {
 		this.restaurantAddress = restAddress;
 	}
-	public int getRestaurantContact() {
+	public long getRestaurantContact() {
 		return restaurantContact;
 	}
-	public void setRestaurantContact(int restContact) {
+	public void setRestaurantContact(long restContact) {
 		this.restaurantContact = restContact;
 	}
 

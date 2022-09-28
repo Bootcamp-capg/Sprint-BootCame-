@@ -66,7 +66,7 @@ public class CartController {
 		}
 	}
 	
-	@PutMapping("/{cartId}")
+	@PutMapping("//{cartId}")
 	public ResponseEntity<Cart> addCartPrice(@PathVariable int cartId) {
 		if(cartId < 0)
 			throw new EnterValidDetailsException("Please Enter Valid cart Id");

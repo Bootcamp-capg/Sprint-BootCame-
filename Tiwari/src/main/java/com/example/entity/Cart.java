@@ -30,9 +30,13 @@ public class Cart {
 	@JoinColumn(name = "customer_id")
 	private  Customer  customer;
 	
-	@OneToOne(mappedBy = "cart")
-	private Orders orders;
 	
+	
+	
+	
+
+	
+
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -41,17 +45,13 @@ public class Cart {
 		this.customer = customer;
 	}
 
-	/*
-	 * @OneToMany(mappedBy="restaurant") private List<Food> food;
-	 */
+	
 
 	public int getId() {
 		return id;
 	}
 
-	/*
-	 * public List<Food> getFood() { return food; }
-	 */
+	
 
 	public void setId(int id) {
 		this.id = id;

@@ -1,13 +1,6 @@
-package com.example.entity;
+package com.example.common;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-@Entity
 public class Payment {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int paymentId;
 	private String paymentStatus;
 	private String transactionId;
@@ -54,6 +47,5 @@ public class Payment {
 	public Payment() {
 		
 	}
-	
 
 }

@@ -1,68 +1,48 @@
 package com.example.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Orders {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int orderId;
-	private String OrderDate;
-	private String OrderTime;
-	//private Restaurant restaurant;
-	//private Customer customer;
-	//private Food food;
-	
-	@OneToOne()
-	@JoinColumn(name = "cart_id")
-	private  Cart  cart;
-	
-	
-	/*
-	 * public Restaurant getRestaurant() { return restaurant; } public void
-	 * setRestaurant(Restaurant restaurant) { this.restaurant = restaurant; } public
-	 * Customer getCustomer() { return customer; } public void setCustomer(Customer
-	 * customer) { this.customer = customer; } public Food getFood() { return food;
-	 * } public void setFood(Food food) { this.food = food; }
-	 */
-	public Cart getCart() {
-		return cart;
+	private int id;
+	private String name;
+	private int qty;
+	private int price;
+	public int getId() {
+		return id;
 	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public Orders(int orderId, String orderDate, String orderTime) {
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getQty() {
+		return qty;
+	}
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public Orders(int id, String name, int qty, int price) {
 		super();
-		this.orderId = orderId;
-		OrderDate = orderDate;
-		OrderTime = orderTime;
+		this.id = id;
+		this.name = name;
+		this.qty = qty;
+		this.price = price;
 	}
 	public Orders() {
-		super();
+		
 	}
-	public int getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
-	public String getOrderDate() {
-		return OrderDate;
-	}
-	public void setOrderDate(String orderDate) {
-		OrderDate = orderDate;
-	}
-	public String getOrderTime() {
-		return OrderTime;
-	}
-	public void setOrderTime(String orderTime) {
-		OrderTime = orderTime;
-	}
-	
-	
 }

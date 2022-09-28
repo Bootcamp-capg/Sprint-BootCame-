@@ -13,12 +13,14 @@ import com.example.entity.Restaurant;
 public interface RestaurantService {
 	
 	public Restaurant addRestaurant(Restaurant restaurant);
+	
 	public Restaurant editRestaurant(Restaurant restaurant);
+	
 	public List<Restaurant> getRestaurants();
+	
 	public Optional<Restaurant> findRestaurantByID(int restaurantId);
-	//public List<RestaurentOutputDto> getAllFoodDto(int restaurantId);
-	//public Optional<Restaurant> findRestaurantById(int restaurantId);
-	public List<Restaurant> findByRestaurantAddress(String restaurantAddress);
-	//public List<RestaurentOutputDto> findFoodByRestaurantId(int restaurantId);
+	
+	public Optional<Restaurant> findByRestaurantAddress(String restaurantAddress);
+	
 	public Restaurant addRestaurantDto(RestaurantInputDto restaurantDto);
 }
