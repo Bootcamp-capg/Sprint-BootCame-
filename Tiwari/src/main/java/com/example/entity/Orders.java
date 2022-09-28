@@ -25,6 +25,14 @@ public class Orders {
 	@JoinColumn(name = "cart_id")
 	private  Cart cart;
 	
+	public Payment getPayment() {
+		return payment;
+	}
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+	@OneToOne(mappedBy = "orders")
+	private Payment payment;
 	
 	public Cart getCart() {
 		return cart;

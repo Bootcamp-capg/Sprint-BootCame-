@@ -6,6 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.Exception.FoodAlreadyPresentException;
+import com.example.Exception.FoodNotFoundException;
+import com.example.Exception.InvalidIdException;
+import com.example.Exception.ListEmptyException;
 import com.example.dto.FoodInputDto;
 import com.example.entity.Food;
 import com.example.repository.FoodRepository;
@@ -18,44 +22,55 @@ public class FoodServiceImp implements FoodService {
 	
 	@Override
 	public Food addFood(Food food) {
-		foodRepository.save(food);
-		return food;
+		if (food.getFoodId() < 0) {
+			throw new InvalidIdException("Please Enter Valid Food Id");
+		} else {
+			if (foodRepository.findById(food.getFoodId()).isPresent())
+				throw new FoodAlreadyPresentException(
+						"Entered id" + food.getFoodId() + "is already Present Please Enter another id");
+		}
+		return foodRepository.save(food);
+	
 	}
 
 	
 
 	@Override
 	public List<Food> getAllFoods() {
+		List<Food> list = (List<Food>) foodRepository.findAll();
+		if (list.isEmpty())
+			throw new ListEmptyException("No Food Present");
 		return (List<Food>) foodRepository.findAll();
 	}
 
 	@Override
 	public Optional<Food> findFoodById(int foodId) {
+		if (foodId < 0) {
+			throw new InvalidIdException("Please Enter Valid Food Id");
+
+		} else {
+			if (!foodRepository.findById(foodId).isPresent()) {
+				throw new FoodNotFoundException("Food not found with foodId " + foodId);
+			}
 		return foodRepository.findById(foodId);
 	}
-
+	}
 	@Override
 	public Food addFoodDto(FoodInputDto foodDto) {
-		// create department object
-		Food foodInputDto = new Food();
 		
-		// Update dept name
+		Food foodInputDto = new Food();
+	
 		foodInputDto.setFoodName(foodDto.getFoodName());
 		foodInputDto.setFoodPrice(foodDto.getFoodPrice());
 		
-		// save dept obj in db 
 		return foodRepository.save(foodInputDto);
 	}
 
 	@Override
 	public List<Food> findAllFoodByRestaurantId(int restaurantId) {
-		
+		if (restaurantId < 0) {
+			throw new InvalidIdException("Please Enter Valid Food Id");
+		}
 		return foodRepository.findAllFoodByRestaurantId(restaurantId);
 	}
-
-//	@Override
-//	public Optional<Food> findFoodByRestaruantId(int restaurantID) {
-//		return foodRepository.findById(restaurantId);
-//	}
-
 }

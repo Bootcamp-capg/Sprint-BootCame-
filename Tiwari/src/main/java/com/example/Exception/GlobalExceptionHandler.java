@@ -56,6 +56,22 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 			return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
 		}
 		
+		// order exceptions
+		@ExceptionHandler(OrderAlreadyPresentException.class)
+		public ResponseEntity<ErrorDetails> handleOrderAlreadyPresentException(OrderAlreadyPresentException ex,WebRequest request)
+		{
+			ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), ex.getMessage());
+
+			return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+		}
+		
+		@ExceptionHandler(OrderNotFoundException.class)
+		public ResponseEntity<ErrorDetails> handleOrderNotFoundExeption(OrderNotFoundException ex,WebRequest request)
+		{
+			ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+
+			return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+		}
 		//common exceptions
 		
 		@ExceptionHandler(ListEmptyException.class)

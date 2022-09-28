@@ -37,6 +37,7 @@ public class OrderController {
 	public TransactionResponse bookOrder(@RequestBody TransactionRequest request) {
 		return orderService.saveOrder(request);
 	}
+	
 	@GetMapping("/getOrder/{orderId}")
 	private ResponseEntity<Optional<Orders>> getOrders(@PathVariable int orderId){
 		return new ResponseEntity<Optional<Orders>>(orderService.findOrderById(orderId),HttpStatus.FOUND);
@@ -44,33 +45,27 @@ public class OrderController {
 
 	@PutMapping("/{cartId}/addcart/{ordersId}")
 	private ResponseEntity<Orders> addCart(@PathVariable int ordersId, @PathVariable int cartId) {
-		if (ordersId < 0 || cartId < 0) {
-			throw new InvalidIdException("Either cartId Or orderId Is Invalid Please Enter Correct ");
-		} else {
+		
 			Cart cart = cartService.findCartById(cartId).get();
 			Orders orders = orderService.findOrderById(ordersId).get();
 			orders.setCart(cart);
 			String name=orders.getCart().getCustomer().getname();
 			orders.setName(name);
 			return new ResponseEntity<Orders>(orderService.addOrders(orders), HttpStatus.OK);
-		}
+		
 
 	}
 
 	@PutMapping("/{ordersId}")
 	public ResponseEntity<Orders> addCartPrice(@PathVariable int ordersId) {
-		if (ordersId < 0)
-			throw new InvalidIdException("Please Enter Valid cart Id");
-		else {
+		
 			Orders orders = orderService.findOrderById(ordersId).get();
 			int price = orders.getCart().getFinalPrice();
 			int qyt = orders.getCart().getQuantity();
-
 			orders.setPrice(price);
 			orders.setQty(qyt);
-
 			return new ResponseEntity<Orders>(orderService.addOrders(orders), HttpStatus.OK);
-		}
+		
 	}
 	@PostMapping("/add/dto")
 	ResponseEntity<Orders> addOrders(@RequestBody OrdersInputDto ordersInputDto) {
