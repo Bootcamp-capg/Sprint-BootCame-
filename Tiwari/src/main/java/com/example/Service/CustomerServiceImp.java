@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.example.Exception.CustomerAlreadyPresentException;
 import com.example.dto.CustomerInputDto;
 import com.example.entity.Customer;
 import com.example.entity.Food;
@@ -19,8 +20,11 @@ public class CustomerServiceImp implements CustomerService{
 	
 	@Override
 	public Customer addCustomer(Customer customer) {
-		customerRepository.save(customer);
-		return customer;
+		if (customerRepository.findById(customer.getCustomerId()).isPresent())
+			throw new CustomerAlreadyPresentException(
+					"Entered id" + customer.getCustomerId() + "is already Present Please Enter another id");
+		return customerRepository.save(customer);
+		
 		
 	}
 
@@ -63,6 +67,5 @@ public class CustomerServiceImp implements CustomerService{
 				return customerRepository.save(customerInputDto);
 		
 	}
-	
 
 }

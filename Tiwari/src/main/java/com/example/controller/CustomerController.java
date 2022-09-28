@@ -34,34 +34,30 @@ public class CustomerController {
 	
 	@Autowired
 	RestaurantService restaurantService;
-
+	
 	@GetMapping("/")
 	public ResponseEntity<List<Customer>> getAllCustomers() {
-		List<Customer> list = null;
 		return new ResponseEntity<List<Customer>>(customerService.getCustomers(), HttpStatus.OK);
 	}
 
 	@PostMapping("/add-Customer")
 	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
-		if (customerService.findCustomerByID(customer.getCustomerId()).isPresent())
-			throw new CustomerAlreadyPresentException(
-					"Entered id" + customer.getCustomerId() + "is already Present Please Enter another id");
+		
 
-		customerService.addCustomer(customer);
-		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+		return new ResponseEntity<Customer>(customerService.addCustomer(customer), HttpStatus.OK);
 
 	}
 	
 	@PostMapping("/add/dto")
 	public ResponseEntity<Customer> addCustomer(@RequestBody CustomerInputDto customerInputDto) {
-		Customer customerDto = customerService.addCustomerDto(customerInputDto);
-		return new ResponseEntity<Customer>(customerDto, HttpStatus.OK);
+		
+		return new ResponseEntity<Customer>(customerService.addCustomerDto(customerInputDto), HttpStatus.OK);
 	}
 
 	@PutMapping("/edit-Customer")
 	public ResponseEntity<Customer> editCustomer(@RequestBody Customer customer) {
-		customerService.editCustomer(customer);
-		return new ResponseEntity<Customer>(customer, HttpStatus.ACCEPTED);
+		
+		return new ResponseEntity<Customer>(customerService.editCustomer(customer), HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/{name}")

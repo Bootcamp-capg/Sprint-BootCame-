@@ -42,7 +42,7 @@ public class OrderController {
 		return new ResponseEntity<Optional<Orders>>(orderService.findOrderById(orderId),HttpStatus.FOUND);
 	}
 
-	@PutMapping("/{cartId}/addcart/{orderId}")
+	@PutMapping("/{cartId}/addcart/{ordersId}")
 	private ResponseEntity<Orders> addCart(@PathVariable int ordersId, @PathVariable int cartId) {
 		if (ordersId < 0 || cartId < 0) {
 			throw new InvalidIdException("Either cartId Or orderId Is Invalid Please Enter Correct ");
@@ -50,12 +50,14 @@ public class OrderController {
 			Cart cart = cartService.findCartById(cartId).get();
 			Orders orders = orderService.findOrderById(ordersId).get();
 			orders.setCart(cart);
+			String name=orders.getCart().getCustomer().getname();
+			orders.setName(name);
 			return new ResponseEntity<Orders>(orderService.addOrders(orders), HttpStatus.OK);
 		}
 
 	}
 
-	@PutMapping("/{OrdersId}")
+	@PutMapping("/{ordersId}")
 	public ResponseEntity<Orders> addCartPrice(@PathVariable int ordersId) {
 		if (ordersId < 0)
 			throw new InvalidIdException("Please Enter Valid cart Id");

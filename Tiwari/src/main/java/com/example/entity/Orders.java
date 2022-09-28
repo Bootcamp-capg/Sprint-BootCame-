@@ -7,6 +7,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Orders {
 
@@ -18,7 +20,7 @@ public class Orders {
 	private int qty;
 	@Min(value=1, message="price can't be 0")
 	private int price;
-	
+	@JsonIgnore
 	@OneToOne()
 	@JoinColumn(name = "cart_id")
 	private  Cart cart;
