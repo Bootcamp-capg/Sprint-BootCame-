@@ -66,7 +66,7 @@ public class CartController {
 		}
 	}
 	
-	@PutMapping("//{cartId}")
+	@PutMapping("/{cartId}")
 	public ResponseEntity<Cart> addCartPrice(@PathVariable int cartId) {
 		if(cartId < 0)
 			throw new EnterValidDetailsException("Please Enter Valid cart Id");
@@ -74,11 +74,14 @@ public class CartController {
 			Cart cart= cartService.findCartById(cartId).get();
 			List<Food> food = cart.getCustomer().getRestaurant().getFood();
 			int finalPrice =0;
+			int quantity=0;
 			for(Food x : food) {
 				
 				finalPrice += x.getFoodPrice();
+				quantity++;
 			}
 			cart.setFinalPrice(finalPrice);
+			cart.setQuantity(quantity);
 			return new ResponseEntity<Cart>(cartService.addCart(cart), HttpStatus.OK);
 		}
 	}

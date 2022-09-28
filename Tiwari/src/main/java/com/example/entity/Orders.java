@@ -2,6 +2,8 @@ package com.example.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Orders {
@@ -11,6 +13,18 @@ public class Orders {
 	private String name;
 	private int qty;
 	private int price;
+	
+	@OneToOne()
+	@JoinColumn(name = "cart_id")
+	private  Cart cart;
+	
+	
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	public int getId() {
 		return id;
 	}

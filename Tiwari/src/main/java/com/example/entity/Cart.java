@@ -18,6 +18,24 @@ public class Cart {
 	
 	private int finalPrice;
 	
+	private int quantity;
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public Orders getOrders() {
+		return orders;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setOrders(Orders orders) {
+		this.orders = orders;
+	}
+
 	public int getFinalPrice() {
 		return finalPrice;
 	}
@@ -30,6 +48,9 @@ public class Cart {
 	@JoinColumn(name = "customer_id")
 	private  Customer  customer;
 	
+
+	@OneToOne(mappedBy = "cart")
+	private Orders orders;
 	
 	
 	
