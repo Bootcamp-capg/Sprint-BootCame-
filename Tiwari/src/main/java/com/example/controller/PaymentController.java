@@ -41,11 +41,10 @@ public class PaymentController {
 	}
 
 	@PutMapping("/{ordersId}/addorders/{paymentId}")
-	private ResponseEntity<Payment> addCart(@PathVariable int paymentId, @PathVariable int ordersId) {
+	private ResponseEntity<Payment> addOrder(@PathVariable int paymentId, @PathVariable int ordersId) {
 		
 			Orders orders = orderService.findOrderById(ordersId).get();
 			Payment payment = paymentService.findPaymentById(paymentId).get();
-			orders.setPayment(payment);
 			int price =orders.getPayment().getOrders().getPrice();
 			payment.setAmount(price);
 			return new ResponseEntity<Payment>(paymentService.addPayment(payment), HttpStatus.OK);

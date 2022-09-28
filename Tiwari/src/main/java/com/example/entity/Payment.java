@@ -14,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Payment {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int paymentId;
 	@NotBlank(message=  "need payment status")
 	private String paymentStatus;

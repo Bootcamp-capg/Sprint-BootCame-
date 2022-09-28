@@ -54,7 +54,7 @@ public class RestaurantController {
 	}
 
 	@PutMapping("/{restaurantId}")
-	public ResponseEntity<Restaurant> getByFoodId(@PathVariable int restaurantId) {
+	public ResponseEntity<Restaurant> getByRestaurantId(@PathVariable int restaurantId) {
 		
 			return new ResponseEntity<Restaurant>(restaurantService.findRestaurantByID(restaurantId).get(),
 					HttpStatus.FOUND);
@@ -68,7 +68,7 @@ public class RestaurantController {
 	}
 	
 	@PostMapping("/add/dto")
-	ResponseEntity<Restaurant> addRestaurant(@RequestBody RestaurantInputDto restaurantInputDto) {
+	ResponseEntity<Restaurant> addRestaurantDto(@RequestBody RestaurantInputDto restaurantInputDto) {
 		
 		return new ResponseEntity<Restaurant>(restaurantService.addRestaurantDto(restaurantInputDto), HttpStatus.OK);
 	}
