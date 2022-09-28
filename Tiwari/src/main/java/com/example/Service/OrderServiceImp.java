@@ -52,8 +52,8 @@ public class OrderServiceImp implements OrderService {
 	}
 
 	@Override
-	public Optional<Orders> findOrderById(int ordersId) {
-		return ordersRepository.findById(ordersId);
+	public Optional<Orders> findOrderById(int orderId) {
+		return ordersRepository.findById(orderId);
 	}
 
 	@Override

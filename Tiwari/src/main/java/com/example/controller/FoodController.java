@@ -41,8 +41,6 @@ public class FoodController {
 	@Autowired
 	CustomerService customerService;
 
-	@Autowired
-	CartService cartService;
 
 	@GetMapping("/")
 	public ResponseEntity<List<Food>> getAllFoods() {

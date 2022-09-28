@@ -11,7 +11,7 @@ import com.example.entity.Orders;
 
 public interface OrderService {
 	public TransactionResponse saveOrder(TransactionRequest request);
-	public Optional<Orders> findOrderById(int ordersId);
+	public Optional<Orders> findOrderById(int orderId);
 	public Orders addOrders(Orders orders);
 	public Orders addOrdersDto(OrdersInputDto ordersDto);
 

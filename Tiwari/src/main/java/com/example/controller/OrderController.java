@@ -1,10 +1,12 @@
 package com.example.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,36 +19,38 @@ import com.example.Service.CartService;
 import com.example.Service.OrderService;
 import com.example.common.TransactionRequest;
 import com.example.common.TransactionResponse;
-import com.example.dto.CartInputDto;
 import com.example.dto.OrdersInputDto;
 import com.example.entity.Cart;
-import com.example.entity.Customer;
-import com.example.entity.Food;
+
 import com.example.entity.Orders;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 	@Autowired
-	public OrderService orderService;
+	OrderService orderService;
 
 	@Autowired
-	public CartService cartService;
+	CartService cartService;
 
 	@PostMapping("/bookOrder")
 	public TransactionResponse bookOrder(@RequestBody TransactionRequest request) {
 		return orderService.saveOrder(request);
 	}
+	@GetMapping("/getOrder/{orderId}")
+	private ResponseEntity<Optional<Orders>> getOrders(@PathVariable int orderId){
+		return new ResponseEntity<Optional<Orders>>(orderService.findOrderById(orderId),HttpStatus.FOUND);
+	}
 
-	@PutMapping("/{ordertId}/addcart/{cartId}")
-	private ResponseEntity<Orders> addCart(@PathVariable int orderId, @PathVariable int cartId) {
-		if (orderId < 0 || cartId < 0) {
+	@PutMapping("/{cartId}/addcart/{orderId}")
+	private ResponseEntity<Orders> addCart(@PathVariable int ordersId, @PathVariable int cartId) {
+		if (ordersId < 0 || cartId < 0) {
 			throw new InvalidIdException("Either cartId Or orderId Is Invalid Please Enter Correct ");
 		} else {
 			Cart cart = cartService.findCartById(cartId).get();
-			Orders order = orderService.findOrderById(orderId).get();
-			order.setCart(cart);
-			return new ResponseEntity<Orders>(orderService.addOrders(order), HttpStatus.OK);
+			Orders orders = orderService.findOrderById(ordersId).get();
+			orders.setCart(cart);
+			return new ResponseEntity<Orders>(orderService.addOrders(orders), HttpStatus.OK);
 		}
 
 	}

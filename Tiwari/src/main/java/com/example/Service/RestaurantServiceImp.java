@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.example.Exception.ListEmptyException;
 import com.example.dto.RestaurantInputDto;
 import com.example.entity.Restaurant;
 import com.example.repository.RestaurantRepository;
@@ -38,11 +38,15 @@ public class RestaurantServiceImp implements RestaurantService {
 
 	@Override
 	public List<Restaurant> getRestaurants() {
+		List<Restaurant> rest= (List<Restaurant>) restaurantRepository.findAll();;
+		if(rest.isEmpty())
+			throw new ListEmptyException("No Restaurant present");
 		return (List<Restaurant>) restaurantRepository.findAll();
 	}
 
 	@Override
 	public Optional<Restaurant> findRestaurantByID(int restaurantId) {
+		
 		return restaurantRepository.findById(restaurantId);
 	}
 

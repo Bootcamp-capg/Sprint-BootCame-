@@ -34,11 +34,8 @@ public class RestaurantController {
 	RestaurantService restaurantService;
 
 	@GetMapping("/")
-	public ResponseEntity<List<Restaurant>> getAllRestaurant() {
-		List<Restaurant> rest= restaurantService.getRestaurants();
-		if(rest.isEmpty())
-			throw new ListEmptyException("No Restaurant present");
-		return new ResponseEntity<List<Restaurant>>(rest,HttpStatus.OK);
+	public ResponseEntity<List<Restaurant>> getAllRestaurant() {	
+		return new ResponseEntity<List<Restaurant>>(restaurantService.getRestaurants(),HttpStatus.OK);
 
 	}
 	
@@ -53,8 +50,8 @@ public class RestaurantController {
 			throw new RestaurantAlreadyPresentException(
 					"Entered id" + restaurant.getId() + "is already present");
 		}
-		restaurantService.addRestaurant(restaurant);
-		return new ResponseEntity<Restaurant> (restaurant,HttpStatus.CREATED);
+		
+		return new ResponseEntity<Restaurant> (restaurantService.addRestaurant(restaurant),HttpStatus.CREATED);
 		}
 	}
 	
