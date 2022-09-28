@@ -9,15 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 //import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Cart {
 	
 	@Id
 	private int id;
-	
+	@Min(value=1, message="price must be greater than 0")
 	private int finalPrice;
-	
+	@Min(value=1, message="quantity must be greater than 0")
 	private int quantity;
 	
 	public int getQuantity() {

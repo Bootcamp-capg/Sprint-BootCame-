@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
@@ -19,8 +21,13 @@ public class Restaurant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@NotEmpty(message = "Please enter customer Name")
+	@Size(min=3,max=20)
 	private String restaurantName;
+	@NotEmpty(message = "Please enter customer Name")
+	@Size(min=3,max=20)
 	private String restaurantAddress;
+	@Size(min=10,max=10)
 	private long restaurantContact;
 	//private Food restMenu;
 	

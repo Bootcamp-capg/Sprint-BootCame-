@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Exception.EnterValidDetailsException;
+import com.example.Exception.InvalidIdException;
 import com.example.Exception.FoodNotFoundException;
 import com.example.Service.CartService;
 import com.example.Service.CustomerService;
@@ -37,7 +37,7 @@ public class CartController {
 	@PutMapping("/{cartId}/addcustomer/{customerId}")
 	private ResponseEntity<Cart> addCart(@PathVariable int customerId, @PathVariable int cartId) {
 		if (cartId < 0 || customerId < 0) {
-			throw new EnterValidDetailsException("Either cartId Or customerIdId Is Invalid Please Enter Correct ");
+			throw new InvalidIdException("Either cartId Or customerIdId Is Invalid Please Enter Correct ");
 		} else {
 			Customer customer = customerService.findCustomerByID(customerId).get();
 			Cart cart = cartService.findCartById(cartId).get();
@@ -56,7 +56,7 @@ public class CartController {
 	@GetMapping("/{cartId}")
 	public ResponseEntity<Cart> getByFoodId(@PathVariable int cartId) {
 		if (cartId < 0) {
-			throw new EnterValidDetailsException("Please Enter Valid Food Id");
+			throw new InvalidIdException("Please Enter Valid Food Id");
 
 		} else {
 			if (!cartService.findCartById(cartId).isPresent()) {
@@ -69,7 +69,7 @@ public class CartController {
 	@PutMapping("/{cartId}")
 	public ResponseEntity<Cart> addCartPrice(@PathVariable int cartId) {
 		if(cartId < 0)
-			throw new EnterValidDetailsException("Please Enter Valid cart Id");
+			throw new InvalidIdException("Please Enter Valid cart Id");
 		else {
 			Cart cart= cartService.findCartById(cartId).get();
 			List<Food> food = cart.getCustomer().getRestaurant().getFood();

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Exception.EnterValidDetailsException;
+import com.example.Exception.InvalidIdException;
 import com.example.Exception.FoodAlreadyPresentException;
 import com.example.Exception.FoodNotFoundException;
 import com.example.Exception.ListEmptyException;
@@ -55,7 +55,7 @@ public class FoodController {
 	@GetMapping("/{foodId}")
 	public ResponseEntity<Food> getByFoodId(@PathVariable int foodId) {
 		if (foodId < 0) {
-			throw new EnterValidDetailsException("Please Enter Valid Food Id");
+			throw new InvalidIdException("Please Enter Valid Food Id");
 
 		} else {
 			if (!foodService.findFoodById(foodId).isPresent()) {
@@ -68,7 +68,7 @@ public class FoodController {
 	@PostMapping("/add-Food")
 	public ResponseEntity<Food> saveFood(@RequestBody Food food) {
 		if (food.getFoodId() < 0) {
-			throw new EnterValidDetailsException("Please Enter Valid Food Id");
+			throw new InvalidIdException("Please Enter Valid Food Id");
 		} else {
 			if (foodService.findFoodById(food.getFoodId()).isPresent())
 				throw new FoodAlreadyPresentException(
@@ -103,7 +103,7 @@ public class FoodController {
 	@PutMapping("/{foodId}/addresturant/{restaurantId}")
 	private ResponseEntity<Food> addRestaurant(@PathVariable int foodId, @PathVariable int restaurantId) {
 		if (restaurantId < 0 || foodId < 0) {
-			throw new EnterValidDetailsException("Either empId Or managerId Is Invalid Please Enter Correct ");
+			throw new InvalidIdException("Either empId Or managerId Is Invalid Please Enter Correct ");
 		} else {
 			Food food = foodService.findFoodById(foodId).get();
 			Restaurant restaurant = restaurantService.findRestaurantByID(restaurantId).get();
@@ -116,7 +116,7 @@ public class FoodController {
 	@PutMapping("/{foodId}/addcustomer/{customerId}")
 	private ResponseEntity<Food> addCustomer(@PathVariable int foodId, @PathVariable int customerId) {
 		if (customerId < 0 || foodId < 0) {
-			throw new EnterValidDetailsException("Either empId Or managerId Is Invalid Please Enter Correct ");
+			throw new InvalidIdException("Either empId Or managerId Is Invalid Please Enter Correct ");
 		} else {
 			Food food = foodService.findFoodById(foodId).get();
 			Customer customer = customerService.findCustomerByID(customerId).get();
@@ -129,7 +129,7 @@ public class FoodController {
 	@GetMapping("/getbyrestaurentid/{id}")
 	public ResponseEntity<List<Food>> getAllByRestaurantId(@PathVariable int id) {
 		if (id < 0) {
-			throw new EnterValidDetailsException("Please Enter Valid Food Id");
+			throw new InvalidIdException("Please Enter Valid Food Id");
 		}
 		return new ResponseEntity<List<Food>>(foodService.findAllFoodByRestaurantId(id), HttpStatus.FOUND);
 	}

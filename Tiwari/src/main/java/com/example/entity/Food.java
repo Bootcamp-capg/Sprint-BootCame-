@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,7 +15,9 @@ public class Food {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int foodId;
+	@Size(min=3, max=15)
 	private String foodName;
+	@Min(value=1, message="price must be greater than 0")
 	private int foodPrice;
 	// @JsonIgnore
 	@ManyToOne

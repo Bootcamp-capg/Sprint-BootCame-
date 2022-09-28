@@ -4,14 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 @Entity
 public class Payment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int paymentId;
+	@NotBlank(message=  "need payment status")
 	private String paymentStatus;
+	@NotBlank(message=  "need tranc id")
 	private String transactionId;
+	@NotEmpty(message=  "can't proceed without orderId")
 	private int orderId;
+	@Min(value=1, message="amount can't be 0")
 	private int amount;
 	public int getPaymentId() {
 		return paymentId;

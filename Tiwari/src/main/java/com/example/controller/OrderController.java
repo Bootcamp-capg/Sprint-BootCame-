@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Exception.EnterValidDetailsException;
+import com.example.Exception.InvalidIdException;
 import com.example.Service.CartService;
 import com.example.Service.OrderService;
 import com.example.common.TransactionRequest;
@@ -38,15 +38,15 @@ public class OrderController {
 		return orderService.saveOrder(request);
 	}
 
-	@PutMapping("/{ordertId}/addcustomer/{cartId}")
-	private ResponseEntity<Orders> addOrder(@PathVariable int orderId, @PathVariable int cartId) {
+	@PutMapping("/{ordertId}/addcart/{cartId}")
+	private ResponseEntity<Orders> addCart(@PathVariable int orderId, @PathVariable int cartId) {
 		if (orderId < 0 || cartId < 0) {
-			throw new EnterValidDetailsException("Either cartId Or orderId Is Invalid Please Enter Correct ");
+			throw new InvalidIdException("Either cartId Or orderId Is Invalid Please Enter Correct ");
 		} else {
 			Cart cart = cartService.findCartById(cartId).get();
 			Orders order = orderService.findOrderById(orderId).get();
 			order.setCart(cart);
-			return new ResponseEntity<Orders>(orderService.addOrders(order), HttpStatus.ACCEPTED);
+			return new ResponseEntity<Orders>(orderService.addOrders(order), HttpStatus.OK);
 		}
 
 	}
@@ -54,7 +54,7 @@ public class OrderController {
 	@PutMapping("/{OrdersId}")
 	public ResponseEntity<Orders> addCartPrice(@PathVariable int ordersId) {
 		if (ordersId < 0)
-			throw new EnterValidDetailsException("Please Enter Valid cart Id");
+			throw new InvalidIdException("Please Enter Valid cart Id");
 		else {
 			Orders orders = orderService.findOrderById(ordersId).get();
 			int price = orders.getCart().getFinalPrice();

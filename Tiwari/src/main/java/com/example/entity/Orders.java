@@ -4,14 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Orders {
 
 	@Id
 	private int id;
+	@NotEmpty(message = "Please enter customer Name")
 	private String name;
+	@Min(value=1, message="quantity can't be 0")
 	private int qty;
+	@Min(value=1, message="price can't be 0")
 	private int price;
 	
 	@OneToOne()

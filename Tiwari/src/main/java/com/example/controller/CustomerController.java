@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Exception.CustomerAlreadyPresentException;
-import com.example.Exception.EnterValidDetailsException;
+import com.example.Exception.InvalidIdException;
+import com.example.Exception.ListEmptyException;
 import com.example.Exception.FoodNotFoundException;
 import com.example.Service.CustomerService;
 import com.example.Service.RestaurantService;
@@ -35,44 +36,44 @@ public class CustomerController {
 	RestaurantService restaurantService;
 
 	@GetMapping("/")
-	public List<Customer> getAllCustomers() {
-		return customerService.getCustomers();
-
+	public ResponseEntity<List<Customer>> getAllCustomers() {
+		List<Customer> list = null;
+		return new ResponseEntity<List<Customer>>(customerService.getCustomers(), HttpStatus.OK);
 	}
 
 	@PostMapping("/add-Customer")
-	public Customer saveCustomer(@RequestBody Customer customer) {
+	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
 		if (customerService.findCustomerByID(customer.getCustomerId()).isPresent())
 			throw new CustomerAlreadyPresentException(
 					"Entered id" + customer.getCustomerId() + "is already Present Please Enter another id");
 
 		customerService.addCustomer(customer);
-		return customer;
+		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 
 	}
 	
 	@PostMapping("/add/dto")
-	ResponseEntity<Customer> addCustomer(@RequestBody CustomerInputDto customerInputDto) {
+	public ResponseEntity<Customer> addCustomer(@RequestBody CustomerInputDto customerInputDto) {
 		Customer customerDto = customerService.addCustomerDto(customerInputDto);
 		return new ResponseEntity<Customer>(customerDto, HttpStatus.OK);
 	}
 
 	@PutMapping("/edit-Customer")
-	public Customer editCustomer(@RequestBody Customer customer) {
+	public ResponseEntity<Customer> editCustomer(@RequestBody Customer customer) {
 		customerService.editCustomer(customer);
-		return customer;
+		return new ResponseEntity<Customer>(customer, HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/{name}")
-	public Customer getByCustomerName(@PathVariable("name") String name) {
-		return customerService.findCustomerByName(name);
+	public ResponseEntity<Customer> getByCustomerName(@PathVariable("name") String name) {
+		return new ResponseEntity<Customer>(customerService.findCustomerByName(name), HttpStatus.ACCEPTED);
 
 	}
 	
 	@PutMapping("/{customerId}/addresturant/{restaurantId}")
 	private ResponseEntity<Customer> addRestaurant(@PathVariable int customerId, @PathVariable int restaurantId) {
 		if (customerId < 0 || restaurantId < 0) {
-			throw new EnterValidDetailsException("Either customerId Or restaurantId Is Invalid Please Enter Correct ");
+			throw new InvalidIdException("Either customerId Or restaurantId Is Invalid Please Enter Correct ");
 		} else {
 			Customer customer = customerService.findCustomerByID(customerId).get();
 			Restaurant restaurant = restaurantService.findRestaurantByID(restaurantId).get();
