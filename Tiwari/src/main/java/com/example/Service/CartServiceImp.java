@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.Exception.CartNotFoundException;
+import com.example.Exception.FoodNotFoundException;
+import com.example.Exception.InvalidIdException;
 import com.example.dto.CartInputDto;
 
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +26,19 @@ public class CartServiceImp implements CartService{
 	
 	@Override
 	public Optional<Cart> findCartById(int cartId) {
+		if (cartId < 0) {
+			throw new InvalidIdException("Please Enter Valid Cart Id");
+
+		}else {
+		if (!cartRepository.findById(cartId).isPresent()) 
+			throw new CartNotFoundException("Food not found with foodId " + cartId);
 		return cartRepository.findById(cartId);
+		}
 	}
 
 	@Override
 	public Cart addCart(Cart cart) {
+		
 		return cartRepository.save(cart);
 	}
 

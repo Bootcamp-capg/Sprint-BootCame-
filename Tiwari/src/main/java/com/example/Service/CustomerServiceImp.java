@@ -20,9 +20,7 @@ public class CustomerServiceImp implements CustomerService{
 	
 	@Override
 	public Customer addCustomer(Customer customer) {
-		if (customerRepository.findById(customer.getCustomerId()).isPresent())
-			throw new CustomerAlreadyPresentException(
-					"Entered id" + customer.getCustomerId() + "is already Present Please Enter another id");
+		
 		return customerRepository.save(customer);
 		
 		

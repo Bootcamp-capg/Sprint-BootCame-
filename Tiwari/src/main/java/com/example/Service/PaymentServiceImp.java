@@ -18,6 +18,9 @@ public class PaymentServiceImp implements PaymentService{
 	@Autowired
 	PaymentRepository paymentRepository;
 	
+	@Autowired
+	OrderService orderService;
+	
 	public Payment doPayment(Payment payment)
 	{
 		payment.setPaymentStatus(paymentProcessing());
@@ -47,7 +50,7 @@ public class PaymentServiceImp implements PaymentService{
 
 	@Override
 	public Payment addPayment(Payment payment) {
-		// TODO Auto-generated method stub
+		
 		return paymentRepository.save(payment);
 	}
 

@@ -23,34 +23,47 @@ import com.example.entity.Payment;
 public class PaymentController {
 	@Autowired
 	private PaymentService paymentService;
-	
+
 	@Autowired
 	private OrderService orderService;
-	
+
 	@PostMapping("/doPayment")
-	public Payment doPayment(@RequestBody Payment payment)
-	{
+	public Payment doPayment(@RequestBody Payment payment) {
 		return paymentService.doPayment(payment);
-		
-	}
-	
-	@PostMapping("/add/dto")
-	ResponseEntity<Payment> addOrders(@RequestBody PaymentInputDto paymentInputDto) {
-		Payment paymentDto = paymentService.addPaymentDto(paymentInputDto);
-		return new ResponseEntity<Payment>(paymentDto, HttpStatus.OK);
-	}
-
-	@PutMapping("/{ordersId}/addorders/{paymentId}")
-	private ResponseEntity<Payment> addOrder(@PathVariable int paymentId, @PathVariable int ordersId) {
-		
-			Orders orders = orderService.findOrderById(ordersId).get();
-			Payment payment = paymentService.findPaymentById(paymentId).get();
-			int price =orders.getPayment().getOrders().getPrice();
-			payment.setAmount(price);
-			return new ResponseEntity<Payment>(paymentService.addPayment(payment), HttpStatus.OK);
-		
 
 	}
 
+	/*
+	 * @PostMapping("/add/dto") ResponseEntity<Payment> addOrders(@RequestBody
+	 * PaymentInputDto paymentInputDto) { Payment paymentDto =
+	 * paymentService.addPaymentDto(paymentInputDto); return new
+	 * ResponseEntity<Payment>(paymentDto, HttpStatus.OK); }
+	 * 
+	 * @PutMapping("/{ordersId}/addorders/{paymentId}") private
+	 * ResponseEntity<Payment> addOrder(@PathVariable int paymentId, @PathVariable
+	 * int ordersId) {
+	 * 
+	 * Orders orders = orderService.findOrderById(ordersId).get(); Payment payment =
+	 * paymentService.findPaymentById(paymentId).get();
+	 * 
+	 * int price =orders.getPayment().getOrders().getPrice();
+	 * payment.setAmount(price);
+	 * 
+	 * payment.setOrders(orders); return new
+	 * ResponseEntity<Payment>(paymentService.addPayment(payment), HttpStatus.OK);
+	 * 
+	 * 
+	 * }
+	 * 
+	 * @PutMapping("/{paymentId}") public ResponseEntity<Payment>
+	 * addCartPrice(@PathVariable int paymentId) {
+	 * 
+	 * Payment payment = paymentService.findPaymentById(paymentId).get(); int price
+	 * = payment.getOrders().getPrice();
+	 * 
+	 * payment.setAmount(price); return new
+	 * ResponseEntity<Payment>(paymentService.addPayment(payment), HttpStatus.OK);
+	 * 
+	 * }
+	 */
 }
-

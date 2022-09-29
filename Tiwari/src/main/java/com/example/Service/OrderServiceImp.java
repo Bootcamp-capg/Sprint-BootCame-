@@ -60,12 +60,9 @@ public class OrderServiceImp implements OrderService {
 	public Optional<Orders> findOrderById(int orderId) {
 		if (orderId < 0 ) {
 			throw new InvalidIdException("Either cartId Or orderId Is Invalid Please Enter Correct ");
-		} else {
-			if (!ordersRepository.findById(orderId).isPresent()) {
-				throw new OrderNotFoundException("Order not found with foodId " + orderId);
-			}
-		return ordersRepository.findById(orderId);
 		}
+		return ordersRepository.findById(orderId);
+		
 	}
 
 	@Override
@@ -74,10 +71,6 @@ public class OrderServiceImp implements OrderService {
 			 throw new InvalidIdException("Please Enter Valid order Id");
 		}
 		else {
-		if (ordersRepository.findById(orders.getId()).isPresent()) {
-			throw new OrderAlreadyPresentException(
-					"Entered id" + orders.getId() + "is already present");
-		}
 		return ordersRepository.save(orders);
 		}
 	}

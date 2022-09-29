@@ -62,13 +62,10 @@ public class RestaurantServiceImp implements RestaurantService {
 		if (restaurantId < 0) {
 			throw new InvalidIdException("Please Enter Valid Food Id");
 
-		} else {
-			if (!restaurantRepository.findById(restaurantId).isPresent()) {
-				throw new FoodNotFoundException("Food not found with foodId " + restaurantId);
-			}
+		} 
 		
 		return restaurantRepository.findById(restaurantId);
-		}
+		
 	}
 
 	@Override

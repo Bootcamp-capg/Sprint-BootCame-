@@ -24,10 +24,6 @@ public class FoodServiceImp implements FoodService {
 	public Food addFood(Food food) {
 		if (food.getFoodId() < 0) {
 			throw new InvalidIdException("Please Enter Valid Food Id");
-		} else {
-			if (foodRepository.findById(food.getFoodId()).isPresent())
-				throw new FoodAlreadyPresentException(
-						"Entered id" + food.getFoodId() + "is already Present Please Enter another id");
 		}
 		return foodRepository.save(food);
 	
@@ -48,12 +44,9 @@ public class FoodServiceImp implements FoodService {
 		if (foodId < 0) {
 			throw new InvalidIdException("Please Enter Valid Food Id");
 
-		} else {
-			if (!foodRepository.findById(foodId).isPresent()) {
-				throw new FoodNotFoundException("Food not found with foodId " + foodId);
-			}
+		} 
 		return foodRepository.findById(foodId);
-	}
+	
 	}
 	@Override
 	public Food addFoodDto(FoodInputDto foodDto) {
