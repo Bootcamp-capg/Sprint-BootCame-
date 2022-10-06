@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.example.dto.CustomerInputDto;
 import com.example.dto.RestaurantInputDto;
-import com.example.dto.RestaurentOutputDto;
+
 import com.example.entity.Customer;
 import com.example.entity.Food;
 import com.example.entity.Restaurant;
@@ -21,6 +21,10 @@ public interface RestaurantService {
 	public Optional<Restaurant> findRestaurantByID(int restaurantId);
 	
 	public Optional<Restaurant> findByRestaurantAddress(String restaurantAddress);
+	
+	public Optional<Restaurant> findByRestaurantName(String restaurantName);
+	
+	public Optional<Restaurant> deleteByRestaurantName(String restaurantName);
 	
 	public Restaurant addRestaurantDto(RestaurantInputDto restaurantDto);
 }

@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,56 +15,68 @@ public class Orders {
 
 	@Id
 	private int id;
-	@NotEmpty(message = "Please enter customer Name")
+
 	private String name;
-	@Min(value=1, message="quantity can't be 0")
+	@Column(nullable = false)
 	private int qty;
-	@Min(value=1, message="price can't be 0")
+	@Column(nullable = false)
 	private int price;
 	@JsonIgnore
 	@OneToOne()
 	@JoinColumn(name = "cart_id")
-	private  Cart cart;
-	
+	private Cart cart;
+
 	public Payment getPayment() {
 		return payment;
 	}
+
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
+
 	@OneToOne(mappedBy = "orders")
 	private Payment payment;
-	
+
 	public Cart getCart() {
 		return cart;
 	}
+
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public int getQty() {
 		return qty;
 	}
+
 	public void setQty(int qty) {
 		this.qty = qty;
 	}
+
 	public int getPrice() {
 		return price;
 	}
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
 	public Orders(int id, String name, int qty, int price) {
 		super();
 		this.id = id;
@@ -71,7 +84,8 @@ public class Orders {
 		this.qty = qty;
 		this.price = price;
 	}
+
 	public Orders() {
-		
+
 	}
 }

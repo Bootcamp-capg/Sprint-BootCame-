@@ -17,14 +17,30 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int customerId;
-	@Size(min=3,max=20)
+	//@Size(min=3,max=20)
 	private String name;
-	@Size(min=3,max=20)
+	//@Size(min=3,max=20)
 	private String customerAddress;
-	@Size(min=10, max=10)
+	//@Size(min=10, max=10)
 	private long customerContact;
+	private String email;
+	private String password;
+	
+	
 
 
+	public String getEmail() {
+		return email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	@OneToOne()
 	@JoinColumn(name = "restaurant_id")
 	private  Restaurant  restaurant;

@@ -11,6 +11,7 @@ import com.example.Exception.CustomerAlreadyPresentException;
 import com.example.dto.CustomerInputDto;
 import com.example.entity.Customer;
 import com.example.entity.Food;
+import com.example.entity.Restaurant;
 import com.example.repository.CustomerRepository;
 @Service
 public class CustomerServiceImp implements CustomerService{
@@ -44,11 +45,7 @@ public class CustomerServiceImp implements CustomerService{
 		
 	}
 
-	@Override
-	public Customer findCustomerByName(String name) {
-	return	customerRepository.findCustomerByName(name);
-		
-	}
+	
 
 	@Override
 	public Customer addCustomerDto(CustomerInputDto customerDto) {
@@ -64,6 +61,11 @@ public class CustomerServiceImp implements CustomerService{
 				// save dept obj in db 
 				return customerRepository.save(customerInputDto);
 		
+	}
+
+	@Override
+	public Optional<Customer> deleteByName(String name) {
+		return customerRepository.deleteByName(name);
 	}
 
 }

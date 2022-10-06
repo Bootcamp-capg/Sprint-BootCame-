@@ -9,6 +9,7 @@ import com.example.dto.CustomerInputDto;
 import com.example.dto.FoodInputDto;
 import com.example.entity.Customer;
 import com.example.entity.Food;
+import com.example.entity.Restaurant;
 import com.example.repository.CustomerRepository;
 
 public interface CustomerService {
@@ -18,8 +19,9 @@ public interface CustomerService {
 	public List<Customer> getCustomers();
 	public Optional<Customer> findCustomerByID(int customerId);
 	//public Optional<Customer> findByName(int customerName);
-	public Customer findCustomerByName(String name);
+	//public Customer findCustomerByName(String name);
 	public Customer addCustomerDto(CustomerInputDto customerDto);
+	public Optional<Customer> deleteByName(String name);
 	
 
 }

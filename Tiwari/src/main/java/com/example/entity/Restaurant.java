@@ -8,8 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
@@ -21,16 +21,34 @@ public class Restaurant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@NotEmpty(message = "Please enter customer Name")
-	@Size(min=3,max=20)
+	//@NotEmpty(message = "Please enter customer Name")
+	
 	private String restaurantName;
-	@NotEmpty(message = "Please enter customer Name")
-	@Size(min=3,max=20)
+	//@NotEmpty(message = "Please enter customer Name")
+	
 	private String restaurantAddress;
-	@Size(min=10,max=10)
+	
 	private long restaurantContact;
+	private String email;
+	private String password;
+	
 	//private Food restMenu;
 	
+	public String getEmail() {
+		return email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setRestaurantAddress(String restaurantAddress) {
+		this.restaurantAddress = restaurantAddress;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -65,12 +83,7 @@ public class Restaurant {
 	public void setRestaurantName(String restName) {
 		this.restaurantName = restName;
 	}
-	public String getRestaurantAddress() {
-		return restaurantAddress;
-	}
-	public void setRestauranttAddress(String restAddress) {
-		this.restaurantAddress = restAddress;
-	}
+	
 	public long getRestaurantContact() {
 		return restaurantContact;
 	}

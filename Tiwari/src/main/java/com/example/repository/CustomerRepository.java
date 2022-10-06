@@ -7,9 +7,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.entity.Customer;
+import com.example.entity.Restaurant;
 
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Integer>{
-	public Customer findCustomerByName(String name);
+	
+	public Optional<Customer> deleteByName(String name);
 
 }

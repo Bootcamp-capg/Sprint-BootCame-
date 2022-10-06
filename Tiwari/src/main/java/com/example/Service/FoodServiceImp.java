@@ -67,4 +67,18 @@ public class FoodServiceImp implements FoodService {
 		return foodRepository.findAllFoodByRestaurantId(restaurantId);
 	}
 
+
+
+	@Override
+	public Optional<Food> deleteByFoodName(String foodName) {
+		return foodRepository.deleteByFoodName(foodName);
+	}
+
+
+
+	
+
+
+
+	
 }

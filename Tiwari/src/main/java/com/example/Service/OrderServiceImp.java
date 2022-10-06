@@ -33,12 +33,12 @@ public class OrderServiceImp implements OrderService {
 	@Override
 	public TransactionResponse saveOrder(TransactionRequest request) {
 		String response = "";
-		Orders orders = request.getOrder();
+		Orders orders = request.getOrders();
 		Payment payment = request.getPayment();
 
 		payment.setOrderId(orders.getId());
 		payment.setAmount(orders.getPrice());
-		ordersRepository.save(orders);
+		//ordersRepository.save(orders);
 		// rest call
 		Payment paymentResponse = template.postForObject("http://localhost:1234/payment/doPayment", payment,
 				Payment.class);

@@ -80,10 +80,20 @@ public class RestaurantServiceImp implements RestaurantService {
 		Restaurant restaurantInputDto = new Restaurant();
 
 		restaurantInputDto.setRestaurantName(restaurantDto.getRestaurantName());
-		restaurantInputDto.setRestauranttAddress(restaurantDto.getRestaurantAddress());
+		restaurantInputDto.setRestaurantAddress(restaurantDto.getRestaurantAddress());
 		restaurantInputDto.setRestaurantContact(restaurantDto.getRestaurantContact());
 	
 		return restaurantRepository.save(restaurantInputDto);
+	}
+
+	@Override
+	public Optional<Restaurant> findByRestaurantName(String restaurantName) {
+		return restaurantRepository.findByRestaurantName(restaurantName);
+	}
+
+	@Override
+	public Optional<Restaurant> deleteByRestaurantName(String restaurantName) {
+		return restaurantRepository.deleteByRestaurantName(restaurantName);
 	}
 
 	

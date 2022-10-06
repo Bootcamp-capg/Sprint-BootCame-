@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.dto.PaymentInputDto;
 import com.example.entity.Orders;
 import com.example.entity.Payment;
+import com.example.repository.OrdersRepository;
 import com.example.repository.PaymentRepository;
 
 @Service
@@ -22,9 +23,9 @@ public class PaymentServiceImp implements PaymentService{
 	OrderService orderService;
 	
 	public Payment doPayment(Payment payment)
-	{
-		payment.setPaymentStatus(paymentProcessing());
-		payment.setTransactionId(UUID.randomUUID().toString());
+	{   
+		
+		
 		return paymentRepository.save(payment);
 	}
 	
@@ -37,8 +38,8 @@ public class PaymentServiceImp implements PaymentService{
 	@Override
 	public Payment addPaymentDto(PaymentInputDto payment) {
 		Payment paymentInputDto = new Payment();
-
-		paymentInputDto.setPaymentId(paymentInputDto.getPaymentId());
+		
+		paymentInputDto.setPaymentId(payment.getId());
 		return paymentRepository.save(paymentInputDto);
 	}
 

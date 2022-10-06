@@ -1,6 +1,8 @@
 package com.example.common;
 
 import com.example.entity.Orders;
+//import com.example.entity.Payment;
+
 
 
 
@@ -8,16 +10,14 @@ import com.example.entity.Orders;
 
 public class TransactionRequest {
 	
-	
-
-	private Orders order;
+	private Orders orders;
 	private Payment payment;
 	
-	public void setOrder(Orders order) {
-		this.order = order;
+	public void setOrders(Orders orders) {
+		this.orders = orders;
 	}
-	public Orders getOrder() {
-		return order;
+	public Orders getOrders() {
+		return orders;
 	}
 	public void setPayment(Payment payment) {
 		this.payment = payment;
@@ -25,9 +25,9 @@ public class TransactionRequest {
 	public Payment getPayment() {
 		return payment;
 	}
-	public TransactionRequest(Orders order, Payment payment) {
+	public TransactionRequest(Orders orders, Payment payment) {
 		super();
-		this.order = order;
+		this.orders = orders;
 		this.payment = payment;
 	}
 	public TransactionRequest() {

@@ -51,22 +51,24 @@ public class OrderController {
 			orders.setCart(cart);
 			String name=orders.getCart().getCustomer().getname();
 			orders.setName(name);
+			orders.setPrice(cart.getFinalPrice());
+			orders.setQty(cart.getQuantity());
 			return new ResponseEntity<Orders>(orderService.addOrders(orders), HttpStatus.OK);
 		
 
 	}
 
-	@PutMapping("/{ordersId}")
-	public ResponseEntity<Orders> addCartPrice(@PathVariable int ordersId) {
-		
-			Orders orders = orderService.findOrderById(ordersId).get();
-			int price = orders.getCart().getFinalPrice();
-			int qyt = orders.getCart().getQuantity();
-			orders.setPrice(price);
-			orders.setQty(qyt);
-			return new ResponseEntity<Orders>(orderService.addOrders(orders), HttpStatus.OK);
-		
-	}
+	/*
+	 * @PutMapping("/{ordersId}") public ResponseEntity<Orders>
+	 * addCartPrice(@PathVariable int ordersId) {
+	 * 
+	 * Orders orders = orderService.findOrderById(ordersId).get(); int price =
+	 * orders.getCart().getFinalPrice(); int qyt = orders.getCart().getQuantity();
+	 * orders.setPrice(price); orders.setQty(qyt); return new
+	 * ResponseEntity<Orders>(orderService.addOrders(orders), HttpStatus.OK);
+	 * 
+	 * }
+	 */
 	@PostMapping("/add/dto")
 	ResponseEntity<Orders> addOrders(@RequestBody OrdersInputDto ordersInputDto) {
 		Orders ordersDto = orderService.addOrdersDto(ordersInputDto);

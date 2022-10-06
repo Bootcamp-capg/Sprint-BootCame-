@@ -15,9 +15,9 @@ public class Food {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int foodId;
-	@Size(min=3, max=15)
+	//@Size(min=3, max=15)
 	private String foodName;
-	@Min(value=1, message="price must be greater than 0")
+	//@Min(value=1, message="price must be greater than 0")
 	private int foodPrice;
 	// @JsonIgnore
 	@ManyToOne
