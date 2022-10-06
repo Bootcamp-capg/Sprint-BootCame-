@@ -82,6 +82,8 @@ public class RestaurantServiceImp implements RestaurantService {
 		restaurantInputDto.setRestaurantName(restaurantDto.getRestaurantName());
 		restaurantInputDto.setRestaurantAddress(restaurantDto.getRestaurantAddress());
 		restaurantInputDto.setRestaurantContact(restaurantDto.getRestaurantContact());
+		restaurantInputDto.setEmail(restaurantDto.getEmail());
+		restaurantInputDto.setPassword(restaurantDto.getPassword());
 	
 		return restaurantRepository.save(restaurantInputDto);
 	}

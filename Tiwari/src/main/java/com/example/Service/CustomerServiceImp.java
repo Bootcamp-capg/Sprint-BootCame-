@@ -56,6 +56,8 @@ public class CustomerServiceImp implements CustomerService{
 				customerInputDto.setCustomerName(customerDto.getName());
 				customerInputDto.setCustomerAddress(customerDto.getCustomerAddress());
 				customerInputDto.setCustomerContact(customerDto.getCustomerContact());
+				customerInputDto.setEmail(customerDto.getEmail());
+				customerInputDto.setPassword(customerDto.getPassword());
 				
 				
 				// save dept obj in db 
