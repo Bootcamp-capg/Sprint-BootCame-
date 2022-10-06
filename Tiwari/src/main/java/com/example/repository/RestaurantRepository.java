@@ -14,6 +14,8 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Integer
 	public Optional<Restaurant> findByRestaurantAddress(String restaurantAddress);
 	public Optional<Restaurant> findByRestaurantName(String restaurantName);
 	public Optional<Restaurant> deleteByRestaurantName(String restaurantName);
+	public Optional<Restaurant> findByEmail(String email);
+	
 }
 	
 	

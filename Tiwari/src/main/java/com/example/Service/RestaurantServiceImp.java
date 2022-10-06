@@ -94,8 +94,13 @@ public class RestaurantServiceImp implements RestaurantService {
 	}
 
 	@Override
-	public Optional<Restaurant> deleteByRestaurantName(String restaurantName) {
-		return restaurantRepository.deleteByRestaurantName(restaurantName);
+	public void deleteById(int id) {
+		restaurantRepository.deleteById(id);
+	}
+
+	@Override
+	public Optional<Restaurant> findByEmail(String email) {
+		return restaurantRepository.findByEmail(email);
 	}
 
 	

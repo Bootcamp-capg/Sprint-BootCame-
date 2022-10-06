@@ -35,6 +35,16 @@ public class CartController {
 		
 			Customer customer = customerService.findCustomerByID(customerId).get();
 			Cart cart = cartService.findCartById(cartId).get();
+			List<Food> food = cart.getCustomer().getRestaurant().getFood();
+			int finalPrice =0;
+			int quantity=0;
+			for(Food x : food) {
+				
+				finalPrice += x.getFoodPrice();
+				quantity++;
+			}
+			cart.setFinalPrice(finalPrice);
+			cart.setQuantity(quantity);
 			cart.setCustomer(customer);
 			return new ResponseEntity<Cart>(cartService.addCart(cart), HttpStatus.ACCEPTED);
 		
@@ -54,23 +64,20 @@ public class CartController {
 		
 	}
 	
-	@PutMapping("/{cartId}")
-	public ResponseEntity<Cart> addCartPrice(@PathVariable int cartId) {
-		
-			Cart cart= cartService.findCartById(cartId).get();
-			List<Food> food = cart.getCustomer().getRestaurant().getFood();
-			int finalPrice =0;
-			int quantity=0;
-			for(Food x : food) {
-				
-				finalPrice += x.getFoodPrice();
-				quantity++;
-			}
-			cart.setFinalPrice(finalPrice);
-			cart.setQuantity(quantity);
-			return new ResponseEntity<Cart>(cartService.addCart(cart), HttpStatus.OK);
-		
-	}
+	/*
+	 * @PutMapping("/{cartId}") public ResponseEntity<Cart>
+	 * addCartPrice(@PathVariable int cartId) {
+	 * 
+	 * Cart cart= cartService.findCartById(cartId).get(); List<Food> food =
+	 * cart.getCustomer().getRestaurant().getFood(); int finalPrice =0; int
+	 * quantity=0; for(Food x : food) {
+	 * 
+	 * finalPrice += x.getFoodPrice(); quantity++; } cart.setFinalPrice(finalPrice);
+	 * cart.setQuantity(quantity); return new
+	 * ResponseEntity<Cart>(cartService.addCart(cart), HttpStatus.OK);
+	 * 
+	 * }
+	 */
 	
 	@PostMapping("/add/dto")
 	ResponseEntity<Cart> addCart(@RequestBody CartInputDto cartInputDto) {

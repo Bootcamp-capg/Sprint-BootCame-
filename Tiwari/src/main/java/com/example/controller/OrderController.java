@@ -33,10 +33,10 @@ public class OrderController {
 	@Autowired
 	CartService cartService;
 
-	@PostMapping("/bookOrder")
-	public TransactionResponse bookOrder(@RequestBody TransactionRequest request) {
-		return orderService.saveOrder(request);
-	}
+	/*
+	 * @PostMapping("/bookOrder") public TransactionResponse bookOrder(@RequestBody
+	 * TransactionRequest request) { return orderService.saveOrder(request); }
+	 */
 	
 	@GetMapping("/getOrder/{orderId}")
 	private ResponseEntity<Optional<Orders>> getOrders(@PathVariable int orderId){

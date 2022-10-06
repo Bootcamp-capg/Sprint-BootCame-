@@ -16,7 +16,7 @@ public interface FoodService {
 	//public Optional<Customer> findByName(int customerName);
 	public Food addFoodDto(FoodInputDto foodDto);
 	public List<Food> findAllFoodByRestaurantId(int restaurantId);
-	public Optional<Food> deleteByFoodName(String foodName);
+	public void deleteByFoodId(int foodId);
 	
 	
 

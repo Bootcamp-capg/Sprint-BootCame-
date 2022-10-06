@@ -21,7 +21,7 @@ public interface CustomerService {
 	//public Optional<Customer> findByName(int customerName);
 	//public Customer findCustomerByName(String name);
 	public Customer addCustomerDto(CustomerInputDto customerDto);
-	public Optional<Customer> deleteByName(String name);
+	public void deleteById(int Id);
 	
 
 }

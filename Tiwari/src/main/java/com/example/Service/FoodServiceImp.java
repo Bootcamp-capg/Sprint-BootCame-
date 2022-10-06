@@ -70,10 +70,14 @@ public class FoodServiceImp implements FoodService {
 
 
 	@Override
-	public Optional<Food> deleteByFoodName(String foodName) {
-		return foodRepository.deleteByFoodName(foodName);
+	public void deleteByFoodId(int foodId) {
+		foodRepository.deleteById(foodId);
+		
 	}
 
+
+
+	
 
 
 	

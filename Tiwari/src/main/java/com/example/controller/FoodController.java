@@ -95,8 +95,8 @@ public class FoodController {
 		return new ResponseEntity<List<Food>>(foodService.findAllFoodByRestaurantId(id), HttpStatus.FOUND);
 	}
 	
-	@DeleteMapping("deletebyname/{name}")
-	public ResponseEntity<Optional<Food>> deleteByName(@PathVariable("name") String name){
-		return new ResponseEntity<Optional<Food>>(foodService.deleteByFoodName(name),HttpStatus.OK);
+	@DeleteMapping("deletebyid/{id}")
+	public void deleteByName(@PathVariable int id){
+		foodService.deleteByFoodId(id);
 	}
 }

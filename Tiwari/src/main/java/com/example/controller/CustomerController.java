@@ -59,9 +59,9 @@ public class CustomerController {
 
 	
 	
-	@DeleteMapping("deletebyname/{name}")
-	public ResponseEntity<Optional<Customer>> deleteByName(@PathVariable("name") String name){
-		return new ResponseEntity<Optional<Customer>>(customerService.deleteByName(name),HttpStatus.OK);
+	@DeleteMapping("deletebyid/{id}")
+	public void deleteByName(@PathVariable int id){
+		customerService.deleteById(id);
 	}
 	
 	@PutMapping("/{customerId}/addresturant/{restaurantId}")

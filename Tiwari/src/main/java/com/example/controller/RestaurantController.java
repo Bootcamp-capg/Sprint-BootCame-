@@ -67,10 +67,21 @@ public class RestaurantController {
 		return new ResponseEntity<Optional<Restaurant>> (restaurantService.findByRestaurantAddress(restaurantAddress), HttpStatus.FOUND);
 
 	}
+	@GetMapping("/getbyemail/{restaurantemail}/{password}")
+	public ResponseEntity<Optional<Restaurant>> getByRestaurantEmail(@PathVariable("restaurantemail") String email,@PathVariable("password") String password) {
+		Restaurant rest=restaurantService.findByEmail(email).get();
+		if(rest.getPassword().equals(password)) {
+			
+		return new ResponseEntity<Optional<Restaurant>> (restaurantService.findByEmail(email), HttpStatus.FOUND);
+		}
+		else
+			return null;
+
+	}
 	
-	@DeleteMapping("/deletebyname/{restaurantname}")
-	public ResponseEntity<Optional<Restaurant>> delateByRestaurantId(@PathVariable("restaurantname") String restaurantName){
-		return new ResponseEntity<Optional<Restaurant>> (restaurantService.deleteByRestaurantName(restaurantName),HttpStatus.OK);
+	@DeleteMapping("/deletebyid/{id}")
+	public void delateByRestaurantId(@PathVariable int id){
+		restaurantService.deleteById(id);
 	}
 	
 	@PostMapping("/add/dto")

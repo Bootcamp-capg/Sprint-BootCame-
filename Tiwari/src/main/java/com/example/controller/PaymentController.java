@@ -29,11 +29,12 @@ public class PaymentController {
 	@Autowired
 	private OrderService orderService;
 
-	@PostMapping("/doPayment")
-	public Payment doPayment(@RequestBody Payment payment) {
-		return paymentService.doPayment(payment);
-
-	}
+	/*
+	 * @PostMapping("/doPayment") public Payment doPayment(@RequestBody Payment
+	 * payment) { return paymentService.doPayment(payment);
+	 * 
+	 * }
+	 */
 
 	
 	  @PostMapping("/add/dto") ResponseEntity<Payment> addOrders(@RequestBody  PaymentInputDto paymentInputDto) 

@@ -22,9 +22,11 @@ public interface RestaurantService {
 	
 	public Optional<Restaurant> findByRestaurantAddress(String restaurantAddress);
 	
+	public Optional<Restaurant> findByEmail(String email);
+	
 	public Optional<Restaurant> findByRestaurantName(String restaurantName);
 	
-	public Optional<Restaurant> deleteByRestaurantName(String restaurantName);
+	public void deleteById(int id);
 	
 	public Restaurant addRestaurantDto(RestaurantInputDto restaurantDto);
 }

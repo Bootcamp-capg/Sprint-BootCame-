@@ -66,8 +66,8 @@ public class CustomerServiceImp implements CustomerService{
 	}
 
 	@Override
-	public Optional<Customer> deleteByName(String name) {
-		return customerRepository.deleteByName(name);
+	public void deleteById(int id) {
+		customerRepository.deleteById(id);;
 	}
 
 }
