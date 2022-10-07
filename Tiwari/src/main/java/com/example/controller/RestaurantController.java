@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +27,7 @@ import com.example.Service.RestaurantService;
 import com.example.dto.RestaurantInputDto;
 import com.example.entity.Food;
 import com.example.entity.Restaurant;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/restaurant")
 public class RestaurantController {
