@@ -22,6 +22,7 @@ public interface CustomerService {
 	//public Customer findCustomerByName(String name);
 	public Customer addCustomerDto(CustomerInputDto customerDto);
 	public void deleteById(int Id);
+	public Customer findByEmailAndPassword(String email,String password);
 	
 
 }

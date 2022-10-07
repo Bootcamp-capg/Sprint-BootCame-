@@ -25,8 +25,10 @@ import com.example.Exception.RestaurantAlreadyPresentException;
 import com.example.Exception.RestaurantNotFoundException;
 import com.example.Service.RestaurantService;
 import com.example.dto.RestaurantInputDto;
+import com.example.entity.Customer;
 import com.example.entity.Food;
 import com.example.entity.Restaurant;
+import com.example.entity.UserLogin;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/restaurant")
@@ -63,21 +65,27 @@ public class RestaurantController {
 		
 	}
 
-	@GetMapping("/getbyaddress/{restaurantaddress}")
+	@PostMapping("/getbyaddress/{restaurantaddress}")
 	public ResponseEntity<Optional<Restaurant>> getByRestaurantAddress(@PathVariable("restaurantaddress") String restaurantAddress) {
 		return new ResponseEntity<Optional<Restaurant>> (restaurantService.findByRestaurantAddress(restaurantAddress), HttpStatus.FOUND);
 
 	}
-	@GetMapping("/getbyemail/{restaurantemail}/{password}")
-	public ResponseEntity<Optional<Restaurant>> getByRestaurantEmail(@PathVariable("restaurantemail") String email,@PathVariable("password") String password) {
-		Restaurant rest=restaurantService.findByEmail(email).get();
-		if(rest.getPassword().equals(password)) {
-			
-		return new ResponseEntity<Optional<Restaurant>> (restaurantService.findByEmail(email), HttpStatus.FOUND);
-		}
-		else
-			return null;
-
+	/*
+	 * @GetMapping("/login/{restaurantemail}/{password}") public
+	 * ResponseEntity<Optional<Restaurant>> login(@PathVariable("restaurantemail")
+	 * String email,@PathVariable("password") String password) { Restaurant
+	 * rest=restaurantService.findByEmail(email).get();
+	 * if(rest.getPassword().equals(password)) {
+	 * 
+	 * return new ResponseEntity<Optional<Restaurant>>
+	 * (restaurantService.findByEmail(email), HttpStatus.FOUND); } else return null;
+	 * 
+	 * }
+	 */
+	
+	@PostMapping("/login")
+	public ResponseEntity<Restaurant> checkLogin(@RequestBody UserLogin userLogin) {
+		return new ResponseEntity<Restaurant>(restaurantService.findByEmailAndPassword(userLogin.getEmail(),userLogin.getPassword()), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/deletebyid/{id}")

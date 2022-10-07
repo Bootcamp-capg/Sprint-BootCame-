@@ -22,6 +22,7 @@ import com.example.Service.RestaurantService;
 import com.example.dto.CustomerInputDto;
 import com.example.entity.Customer;
 import com.example.entity.Restaurant;
+import com.example.entity.UserLogin;
 
 @RestController
 @RequestMapping("/customer")
@@ -58,7 +59,11 @@ public class CustomerController {
 		
 		return new ResponseEntity<Customer>(customerService.editCustomer(customer), HttpStatus.ACCEPTED);
 	}
-
+ 
+	@PostMapping("/login")
+	public ResponseEntity<Customer> checkLogin(@RequestBody UserLogin userLogin) {
+		return new ResponseEntity<Customer>(customerService.findByEmailAndPassword(userLogin.getEmail(),userLogin.getPassword()), HttpStatus.CREATED);
+	}
 	
 	
 	@DeleteMapping("deletebyid/{id}")

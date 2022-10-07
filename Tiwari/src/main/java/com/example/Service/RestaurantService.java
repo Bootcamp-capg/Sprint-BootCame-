@@ -29,4 +29,6 @@ public interface RestaurantService {
 	public void deleteById(int id);
 	
 	public Restaurant addRestaurantDto(RestaurantInputDto restaurantDto);
+	
+	public Restaurant findByEmailAndPassword(String email,String password);
 }

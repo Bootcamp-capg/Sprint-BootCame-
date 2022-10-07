@@ -6,12 +6,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.Exception.EmailOrPasswordException;
 import com.example.Exception.FoodNotFoundException;
 import com.example.Exception.InvalidIdException;
 import com.example.Exception.ListEmptyException;
 import com.example.Exception.RestaurantAlreadyPresentException;
 import com.example.Exception.RestaurantNotFoundException;
 import com.example.dto.RestaurantInputDto;
+import com.example.entity.Customer;
 import com.example.entity.Restaurant;
 import com.example.repository.RestaurantRepository;
 
@@ -101,6 +103,14 @@ public class RestaurantServiceImp implements RestaurantService {
 	@Override
 	public Optional<Restaurant> findByEmail(String email) {
 		return restaurantRepository.findByEmail(email);
+	}
+	
+	@Override
+	public Restaurant findByEmailAndPassword(String email, String password) {
+		Restaurant result=restaurantRepository.findByEmailAndPassword(email,password);
+		if(result==null)
+		   throw new EmailOrPasswordException("error in ur passsword or email");
+		return restaurantRepository.findByEmailAndPassword(email, password);
 	}
 
 	

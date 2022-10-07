@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.example.Exception.CustomerAlreadyPresentException;
+import com.example.Exception.EmailOrPasswordException;
 import com.example.dto.CustomerInputDto;
 import com.example.entity.Customer;
 import com.example.entity.Food;
@@ -68,6 +69,14 @@ public class CustomerServiceImp implements CustomerService{
 	@Override
 	public void deleteById(int id) {
 		customerRepository.deleteById(id);;
+	}
+
+	@Override
+	public Customer findByEmailAndPassword(String email, String password) {
+		Customer result=customerRepository.findByEmailAndPassword(email,password);
+		if(result==null)
+		   throw new EmailOrPasswordException("error in ur passsword or email");
+		return customerRepository.findByEmailAndPassword(email, password);
 	}
 
 }

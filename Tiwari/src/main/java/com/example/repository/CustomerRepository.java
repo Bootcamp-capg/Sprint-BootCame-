@@ -13,5 +13,6 @@ import com.example.entity.Restaurant;
 public interface CustomerRepository extends CrudRepository<Customer, Integer>{
 	
 	public Optional<Customer> deleteByName(String name);
+	public Customer findByEmailAndPassword(String email,String password);
 
 }
