@@ -71,9 +71,9 @@ public class RestaurantServiceImp implements RestaurantService {
 	}
 
 	@Override
-	public Optional<Restaurant> findByRestaurantAddress(String restaurantAddress) {
+	public List<Restaurant> findAllByRestaurantAddress(String restaurantAddress) {
 
-		return restaurantRepository.findByRestaurantAddress(restaurantAddress);
+		return restaurantRepository.findAllByRestaurantAddress(restaurantAddress);
 	}
 
 	@Override

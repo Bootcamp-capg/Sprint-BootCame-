@@ -12,7 +12,7 @@ import com.example.entity.Restaurant;
 
 @Repository
 public interface RestaurantRepository extends CrudRepository<Restaurant, Integer>{
-	public Optional<Restaurant> findByRestaurantAddress(String restaurantAddress);
+	public List<Restaurant> findAllByRestaurantAddress(String restaurantAddress);
 	public Optional<Restaurant> findByRestaurantName(String restaurantName);
 	public Optional<Restaurant> deleteByRestaurantName(String restaurantName);
 	public Optional<Restaurant> findByEmail(String email);

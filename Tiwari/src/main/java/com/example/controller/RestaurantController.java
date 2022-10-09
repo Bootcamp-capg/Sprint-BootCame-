@@ -29,9 +29,10 @@ import com.example.entity.Customer;
 import com.example.entity.Food;
 import com.example.entity.Restaurant;
 import com.example.entity.UserLogin;
-@CrossOrigin(origins = "http://localhost:3000")
+
 @RestController
 @RequestMapping("/restaurant")
+@CrossOrigin(origins = "http://localhost:3000")
 public class RestaurantController {
 
 	@Autowired
@@ -66,8 +67,8 @@ public class RestaurantController {
 	}
 
 	@PostMapping("/getbyaddress/{restaurantaddress}")
-	public ResponseEntity<Optional<Restaurant>> getByRestaurantAddress(@PathVariable("restaurantaddress") String restaurantAddress) {
-		return new ResponseEntity<Optional<Restaurant>> (restaurantService.findByRestaurantAddress(restaurantAddress), HttpStatus.FOUND);
+	public ResponseEntity<List<Restaurant>> getByRestaurantAddress(@PathVariable("restaurantaddress") String restaurantAddress) {
+		return new ResponseEntity<List<Restaurant>> (restaurantService.findAllByRestaurantAddress(restaurantAddress), HttpStatus.FOUND);
 
 	}
 	/*
@@ -97,6 +98,18 @@ public class RestaurantController {
 	ResponseEntity<Restaurant> addRestaurantDto(@RequestBody RestaurantInputDto restaurantInputDto) {
 		
 		return new ResponseEntity<Restaurant>(restaurantService.addRestaurantDto(restaurantInputDto), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getbyemail/{restaurantemail}/{password}")
+	public ResponseEntity<Restaurant> getByRestaurantEmail(@PathVariable("restaurantemail") String email,@PathVariable("password") String password) {
+		Restaurant rest=restaurantService.findByEmail(email).get();
+		if(rest.getPassword().equals(password)) {
+			
+		return new ResponseEntity<Restaurant> (restaurantService.findByEmail(email).get(), HttpStatus.OK);
+		}
+		else
+			throw new RestaurantNotFoundException("Invalid Credentials");
+
 	}
 
 }

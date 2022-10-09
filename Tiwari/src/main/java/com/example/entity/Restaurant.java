@@ -23,6 +23,9 @@ public class Restaurant {
 	private int id;
 	//@NotEmpty(message = "Please enter customer Name")
 	
+	public String getRestaurantAddress() {
+		return restaurantAddress;
+	}
 	private String restaurantName;
 	//@NotEmpty(message = "Please enter customer Name")
 	
@@ -90,5 +93,6 @@ public class Restaurant {
 	public void setRestaurantContact(long restContact) {
 		this.restaurantContact = restContact;
 	}
+	
 
 }

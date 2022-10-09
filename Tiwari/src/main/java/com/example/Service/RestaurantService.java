@@ -20,7 +20,7 @@ public interface RestaurantService {
 	
 	public Optional<Restaurant> findRestaurantByID(int restaurantId);
 	
-	public Optional<Restaurant> findByRestaurantAddress(String restaurantAddress);
+	public List<Restaurant> findAllByRestaurantAddress(String restaurantAddress);
 	
 	public Optional<Restaurant> findByEmail(String email);
 	
