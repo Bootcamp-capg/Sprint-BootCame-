@@ -1,15 +1,27 @@
 package com.example.dto;
 
 public class CartInputDto {
-	private int id;
+	
+	private int quantity;
+	private int finalPrice;
 
-	public int getId() {
-		return id;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getFinalPrice() {
+		return finalPrice;
 	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setFinalPrice(int finalPrice) {
+		this.finalPrice = finalPrice;
+	}
+
+	
 	
 
 }

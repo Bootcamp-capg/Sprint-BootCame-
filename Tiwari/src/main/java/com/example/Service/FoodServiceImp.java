@@ -13,6 +13,7 @@ import com.example.Exception.ListEmptyException;
 import com.example.dto.FoodInputDto;
 import com.example.entity.Food;
 import com.example.repository.FoodRepository;
+import com.example.repository.RestaurantRepository;
 
 @Service
 public class FoodServiceImp implements FoodService {
@@ -55,6 +56,7 @@ public class FoodServiceImp implements FoodService {
 	
 		foodInputDto.setFoodName(foodDto.getFoodName());
 		foodInputDto.setFoodPrice(foodDto.getFoodPrice());
+
 		
 		return foodRepository.save(foodInputDto);
 	}

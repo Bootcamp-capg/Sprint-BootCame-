@@ -4,6 +4,7 @@ public class FoodInputDto {
 	
 	private String foodName;
 	private int foodPrice;
+	private int id;
 	public String getFoodName() {
 		return foodName;
 	}

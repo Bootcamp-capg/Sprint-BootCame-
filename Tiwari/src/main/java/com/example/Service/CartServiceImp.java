@@ -47,7 +47,10 @@ public class CartServiceImp implements CartService{
 		
 		Cart cartInputDto = new Cart();
 		
-		cartInputDto.setId(cartDto.getId());
+		cartInputDto.setFinalPrice(cartDto.getFinalPrice());
+		cartInputDto.setQuantity(cartDto.getQuantity());
+		
+		//cartInputDto.setId(cartDto.getId());
 		return cartRepository.save(cartInputDto);
 		
 	}
