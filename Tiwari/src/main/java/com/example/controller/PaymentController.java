@@ -40,10 +40,7 @@ public class PaymentController {
 	 * }
 	 */
 
-	@GetMapping("/getpayment/{paymentid}")
-	private ResponseEntity<Optional<Payment>> getOrders(@PathVariable int paymentId){
-		return new ResponseEntity<Optional<Payment>>(paymentService.findPaymentById(paymentId),HttpStatus.OK);
-	}
+	
 	
 
 	
@@ -81,5 +78,9 @@ public class PaymentController {
 		 * 
 		 * }
 		 */
+	  @GetMapping("/getpayment/{paymentid}")
+	  private ResponseEntity<Optional<Payment>> getPayment(@PathVariable int paymentid){
+		  return new ResponseEntity<Optional<Payment>>(paymentService.getByPaymentId(paymentid),HttpStatus.OK);
+	  }
 	 
 }

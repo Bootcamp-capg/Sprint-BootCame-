@@ -43,16 +43,17 @@ public class PaymentServiceImp implements PaymentService{
 		return paymentRepository.save(paymentInputDto);
 	}
 
-	@Override
-	public Optional<Payment> findPaymentById(int paymentId) {
-		return paymentRepository.findById(paymentId);
-		
-	}
+	
 
 	@Override
 	public Payment addPayment(Payment payment) {
 		
 		return paymentRepository.save(payment);
+	}
+
+	@Override
+	public Optional<Payment> getByPaymentId(int paymentId) {
+		return paymentRepository.findById(paymentId);
 	}
 
 

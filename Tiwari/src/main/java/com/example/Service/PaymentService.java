@@ -10,8 +10,8 @@ public interface PaymentService {
 	public String paymentProcessing();
 	public Payment doPayment(Payment payment);
 	public Payment addPaymentDto(PaymentInputDto payment);
-	public Optional<Payment> findPaymentById(int paymentId);
 	public Payment addPayment(Payment payment);
 	//public Optional<Orders> findPaymentById(int orderId);
+	public Optional<Payment> getByPaymentId(int paymentId);
 
 }
