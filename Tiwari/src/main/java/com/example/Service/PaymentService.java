@@ -3,6 +3,7 @@ package com.example.Service;
 import java.util.Optional;
 
 import com.example.dto.PaymentInputDto;
+import com.example.entity.Orders;
 import com.example.entity.Payment;
 
 public interface PaymentService {
@@ -11,5 +12,6 @@ public interface PaymentService {
 	public Payment addPaymentDto(PaymentInputDto payment);
 	public Optional<Payment> findPaymentById(int paymentId);
 	public Payment addPayment(Payment payment);
+	//public Optional<Orders> findPaymentById(int orderId);
 
 }

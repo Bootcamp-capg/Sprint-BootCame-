@@ -63,7 +63,7 @@ public class CartController {
 	@GetMapping("/{cartId}")
 	public ResponseEntity<Cart> getByFoodId(@PathVariable int cartId) {
 		
-			return new ResponseEntity<Cart>(cartService.findCartById(cartId).get(), HttpStatus.FOUND);
+			return new ResponseEntity<Cart>(cartService.findCartById(cartId).get(), HttpStatus.OK);
 		
 	}
 	

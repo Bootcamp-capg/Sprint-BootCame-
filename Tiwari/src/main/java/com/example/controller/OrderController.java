@@ -42,7 +42,7 @@ public class OrderController {
 	
 	@GetMapping("/getOrder/{orderId}")
 	private ResponseEntity<Optional<Orders>> getOrders(@PathVariable int orderId){
-		return new ResponseEntity<Optional<Orders>>(orderService.findOrderById(orderId),HttpStatus.FOUND);
+		return new ResponseEntity<Optional<Orders>>(orderService.findOrderById(orderId),HttpStatus.OK);
 	}
 
 	@PutMapping("/{cartId}/addcart/{ordersId}")

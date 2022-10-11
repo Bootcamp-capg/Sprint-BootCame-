@@ -1,11 +1,13 @@
 package com.example.controller;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,6 +39,12 @@ public class PaymentController {
 	 * 
 	 * }
 	 */
+
+	@GetMapping("/getpayment/{paymentid}")
+	private ResponseEntity<Optional<Payment>> getOrders(@PathVariable int paymentId){
+		return new ResponseEntity<Optional<Payment>>(paymentService.findPaymentById(paymentId),HttpStatus.OK);
+	}
+	
 
 	
 	  @PostMapping("/add/dto") ResponseEntity<Payment> addOrders(@RequestBody  PaymentInputDto paymentInputDto) 
