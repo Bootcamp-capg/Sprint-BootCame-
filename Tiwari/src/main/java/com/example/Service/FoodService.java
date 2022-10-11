@@ -17,6 +17,7 @@ public interface FoodService {
 	public Food addFoodDto(FoodInputDto foodDto);
 	public List<Food> findAllFoodByRestaurantId(int restaurantId);
 	public void deleteByFoodId(int foodId);
+	public List<Food> findAllFoodByCustomerCustomerId(int customerId);
 	
 	
 

@@ -20,17 +20,15 @@ public class FoodServiceImp implements FoodService {
 
 	@Autowired
 	private FoodRepository foodRepository;
-	
+
 	@Override
 	public Food addFood(Food food) {
 		if (food.getFoodId() < 0) {
 			throw new InvalidIdException("Please Enter Valid Food Id");
 		}
 		return foodRepository.save(food);
-	
-	}
 
-	
+	}
 
 	@Override
 	public List<Food> getAllFoods() {
@@ -45,19 +43,19 @@ public class FoodServiceImp implements FoodService {
 		if (foodId < 0) {
 			throw new InvalidIdException("Please Enter Valid Food Id");
 
-		} 
+		}
 		return foodRepository.findById(foodId);
-	
+
 	}
+
 	@Override
 	public Food addFoodDto(FoodInputDto foodDto) {
-		
+
 		Food foodInputDto = new Food();
-	
+
 		foodInputDto.setFoodName(foodDto.getFoodName());
 		foodInputDto.setFoodPrice(foodDto.getFoodPrice());
 
-		
 		return foodRepository.save(foodInputDto);
 	}
 
@@ -69,22 +67,18 @@ public class FoodServiceImp implements FoodService {
 		return foodRepository.findAllFoodByRestaurantId(restaurantId);
 	}
 
-
-
 	@Override
 	public void deleteByFoodId(int foodId) {
 		foodRepository.deleteById(foodId);
-		
+
 	}
 
+	@Override
+	public List<Food> findAllFoodByCustomerCustomerId(int customerId) {
+		if (customerId < 0) {
+			throw new InvalidIdException("Please Enter Valid customer Id");
+		}
+		return foodRepository.findAllFoodByCustomerCustomerId(customerId);
+	}
 
-
-	
-
-
-	
-
-
-
-	
 }

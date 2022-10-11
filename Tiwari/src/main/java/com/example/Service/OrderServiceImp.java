@@ -78,7 +78,10 @@ public class OrderServiceImp implements OrderService {
 	@Override
 	public Orders addOrdersDto(OrdersInputDto ordersDto) {
 		Orders ordersInputDto = new Orders();
-		ordersInputDto.setId(ordersDto.getId());
+		ordersInputDto.setQty(ordersDto.getQty());
+		ordersInputDto.setPrice(ordersDto.getPrice());
+		
+		//ordersInputDto.setId(ordersDto.getId());
 		return ordersRepository.save(ordersInputDto);
 	}
 

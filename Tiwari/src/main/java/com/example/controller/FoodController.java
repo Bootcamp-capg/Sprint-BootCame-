@@ -44,17 +44,15 @@ public class FoodController {
 	@Autowired
 	CustomerService customerService;
 
-
 	@GetMapping("/")
 	public ResponseEntity<List<Food>> getAllFoods() {
-	return new ResponseEntity<List<Food>>(foodService.getAllFoods(), HttpStatus.OK);
+		return new ResponseEntity<List<Food>>(foodService.getAllFoods(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{foodId}")
 	public ResponseEntity<Food> getByFoodId(@PathVariable int foodId) {
-			return new ResponseEntity<Food>(foodService.findFoodById(foodId).get(), HttpStatus.FOUND);
-		}
-
+		return new ResponseEntity<Food>(foodService.findFoodById(foodId).get(), HttpStatus.FOUND);
+	}
 
 	@PostMapping("/add-Food")
 	public ResponseEntity<Food> saveFood(@RequestBody Food food) {
@@ -64,41 +62,43 @@ public class FoodController {
 
 	@PostMapping("/add/dto")
 	ResponseEntity<Food> addFood(@RequestBody FoodInputDto food) {
-	
+
 		return new ResponseEntity<>(foodService.addFoodDto(food), HttpStatus.OK);
 	}
 
-
-
 	@PutMapping("/{foodId}/addresturant/{restaurantId}")
 	private ResponseEntity<Food> addRestaurant(@PathVariable int foodId, @PathVariable int restaurantId) {
-		
-			Food food = foodService.findFoodById(foodId).get();
-			Restaurant restaurant = restaurantService.findRestaurantByID(restaurantId).get();
-			food.setRestaurant(restaurant);
-			return new ResponseEntity<Food>(foodService.addFood(food), HttpStatus.ACCEPTED);
-		
+
+		Food food = foodService.findFoodById(foodId).get();
+		Restaurant restaurant = restaurantService.findRestaurantByID(restaurantId).get();
+		food.setRestaurant(restaurant);
+		return new ResponseEntity<Food>(foodService.addFood(food), HttpStatus.OK);
 
 	}
 
 	@PutMapping("/{foodId}/addcustomer/{customerId}")
 	private ResponseEntity<Food> addCustomer(@PathVariable int foodId, @PathVariable int customerId) {
-			Food food = foodService.findFoodById(foodId).get();
-			Customer customer = customerService.findCustomerByID(customerId).get();
-			food.setCustomer(customer);
-			return new ResponseEntity<Food>(foodService.addFood(food), HttpStatus.ACCEPTED);
-
+		Food food = foodService.findFoodById(foodId).get();
+		Customer customer = customerService.findCustomerByID(customerId).get();
+		food.setCustomer(customer);
+		return new ResponseEntity<Food>(foodService.addFood(food), HttpStatus.ACCEPTED);
 
 	}
 
 	@GetMapping("/getbyrestaurentid/{id}")
 	public ResponseEntity<List<Food>> getAllByRestaurantId(@PathVariable int id) {
-		
-		return new ResponseEntity<List<Food>>(foodService.findAllFoodByRestaurantId(id), HttpStatus.FOUND);
+
+		return new ResponseEntity<List<Food>>(foodService.findAllFoodByRestaurantId(id), HttpStatus.OK);
 	}
-	
+
+	@GetMapping("/getbycustomerid/{id}")
+	public ResponseEntity<List<Food>> getAllByCustomerId(@PathVariable int id) {
+
+		return new ResponseEntity<List<Food>>(foodService.findAllFoodByCustomerCustomerId(id), HttpStatus.OK);
+	}
+
 	@DeleteMapping("deletebyid/{id}")
-	public void deleteByName(@PathVariable int id){
+	public void deleteByName(@PathVariable int id) {
 		foodService.deleteByFoodId(id);
 	}
 }

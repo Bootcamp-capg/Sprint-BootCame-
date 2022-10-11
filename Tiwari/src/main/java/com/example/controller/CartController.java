@@ -37,6 +37,8 @@ public class CartController {
 		
 			Customer customer = customerService.findCustomerByID(customerId).get();
 			Cart cart = cartService.findCartById(cartId).get();
+			
+			cart.setCustomer(customer);
 			List<Food> food = cart.getCustomer().getRestaurant().getFood();
 			int finalPrice =0;
 			int quantity=0;
@@ -47,7 +49,6 @@ public class CartController {
 			}
 			cart.setFinalPrice(finalPrice);
 			cart.setQuantity(quantity);
-			cart.setCustomer(customer);
 			return new ResponseEntity<Cart>(cartService.addCart(cart), HttpStatus.ACCEPTED);
 		
 
