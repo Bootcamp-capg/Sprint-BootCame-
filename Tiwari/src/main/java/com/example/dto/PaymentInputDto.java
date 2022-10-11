@@ -4,14 +4,17 @@ import java.sql.Time;
 import java.util.Date;
 
 public class PaymentInputDto {
-	private int id;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	
+	
+	private int amount;
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
 	
 
 }

@@ -39,7 +39,7 @@ public class PaymentServiceImp implements PaymentService{
 	public Payment addPaymentDto(PaymentInputDto payment) {
 		Payment paymentInputDto = new Payment();
 		
-		paymentInputDto.setPaymentId(payment.getId());
+		paymentInputDto.setAmount(payment.getAmount());
 		return paymentRepository.save(paymentInputDto);
 	}
 

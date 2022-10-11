@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Payment {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int paymentId;
 	private String paymentStatus;
 	private String transactionId;
