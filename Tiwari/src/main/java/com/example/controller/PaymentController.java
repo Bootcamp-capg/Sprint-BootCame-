@@ -53,7 +53,7 @@ public class PaymentController {
 	  private  ResponseEntity<Payment> addOrder(@PathVariable int paymentId, @PathVariable int ordersId) {
 	  
 	  Orders orders = orderService.findOrderById(ordersId).get(); 
-	  Payment payment =  paymentService.findPaymentById(paymentId).get();
+	  Payment payment =  paymentService.getByPaymentId(paymentId).get();
 	  payment.setPaymentStatus(paymentService.paymentProcessing());
 	  payment.setTransactionId(UUID.randomUUID().toString());
 	  
